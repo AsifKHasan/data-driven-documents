@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,portrait,left=0.50in, right=0.50in, top=1.50in, bottom=1.50in]{geometry}
+\usepackage{fontspec}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[table]{xcolor}
+\usepackage{multirow,rotating}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{titlesec}
+\usepackage{lastpage}
+
+\fancyfoot[C]{Page \thepage\ of \pageref{LastPage}}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength\parindent{0pt}
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}                       % "top" strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}                 % "bottom" strut
+\newcommand{\TBstrut}{\Tstrut\Bstrut}                       % top&bottom struts
+\sectionfont{\fontsize{12}{15}\selectfont}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 0pt}
+
+\begin{document}
+
+{\Large
+\centering\textbf{Spectrum Engineering Consortium Ltd.}\\
+\centerline{Cash Salary Advice for {{% data.wing|replace('&', '\&') %}} wing for the month of {{% data.month %}} }
+\centerline{Date : {{% data.date %}} }
+}
+
+\begin{longtable}{|p{1.00cm}|p{3.00cm}|p{6.00cm}|p{3.00cm}|p{3.50cm}|}
+  \hline
+    \centering\textbf{\#} & \raggedright\textbf{Unit} & \raggedright\textbf{Name of Employee} & \raggedright\textbf{Signature} & \raggedleft\textbf{Net Pay in BDT}
+    \TBstrut \tabularnewline \hline
+    \endhead
+    \endfoot
+    \bottomrule
+    \multicolumn{3}{l}{\textbf{Total}}  &  \multicolumn{2}{r}{\textbf{ {{% data.totalamount %}} }}
+    \tabularnewline \hline
+    \multicolumn{5}{r}{\textbf{ {{% data.totalamountinwords %}} }}
+    \tabularnewline \hline
+    \endlastfoot
+    {% for row in data.salary %}
+      \TBstrut
+      \centering  {{% loop.index %}}
+      & \raggedright {{% row.unit|replace('&', '\&') %}}
+      & \raggedright {{% row.name %}}
+      & \raggedright {{% row.account %}}
+      & \raggedleft {{% row.payable %}}
+      \tabularnewline \hline
+    {% endfor %}
+\end{longtable}
+
+\vspace{2.0cm}
+
+$\overline{\makebox[4.0cm]{MD/DMD}}$
+\hspace{8.0cm}
+$\overline{\makebox[4.0cm]{Director}}$
+
+\end{document}

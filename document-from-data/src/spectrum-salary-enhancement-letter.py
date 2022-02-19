@@ -49,8 +49,8 @@ DATA_PROCESSORS = {
 
 DATA_SERIALIZERS = {
     'salary-enhancement': {
-        'input-template': '../template/salary-enhancement/HR__salary-enhancement-template__2022.odt',
-        'output-dir': '../out/salary-enhancement',
+        'input-template': '../template/spectrum/salary-enhancement/HR__salary-enhancement-template__2022.odt',
+        'output-dir': '../out/spectrum/salary-enhancement',
         'output-file-pattern': 'spectrum__salary-enhancement__2022__{0}__{1}.odt',
         'pdf-output-for-files': True,
         'merge-files': True,

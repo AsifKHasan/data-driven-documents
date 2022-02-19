@@ -44,8 +44,8 @@ DATA_PROCESSORS = {
 
 DATA_SERIALIZERS = {
     'transfer-notice': {
-        'input-template': '../template/transfer-notice/HR__transfer-notice-template__2022.odt',
-        'output-dir': '../out/transfer-notice',
+        'input-template': '../template/spectrum/transfer-notice/HR__transfer-notice-template__2022.odt',
+        'output-dir': '../out/spectrum/transfer-notice',
         'output-file-pattern': 'spectrum__transfer-notice__2022__{0}__{1}.odt',
         'pdf-output-for-files': True,
         'merge-files': True,

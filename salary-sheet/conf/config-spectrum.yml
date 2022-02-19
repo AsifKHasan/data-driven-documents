@@ -1,0 +1,27 @@
+master-data:
+  bank-accounts:
+  - 14131050002359
+  - 14111060000068
+  bank-filters:
+  - None
+  - BdREN
+  - Software
+  modes:
+  - Cash
+  - Cheque
+  - Bank
+  months:
+  - Jul21.
+  - Aug21.
+  - Sep21.
+  wings:
+  - Acquisition
+  - Delivery
+  - Operations
+selection:
+  selected-account: '14111060000068'
+  selected-filter: Software
+  selected-mode: Cash
+  selected-month: Jul21.
+  selected-reference: 21/891
+  selected-wing: Operations

@@ -1,0 +1,20 @@
+dirs:
+  template-dir: '../template'
+  output-dir: '../out'
+
+gsheet:
+  name: 'name-of-the-gsheet-where-the-data-is'
+  worksheet: 'name-of-the-worksheet-where-the-data-is'
+  header-row: in-which-row-the-header-is-0-based
+
+output:
+  template: 'odt-template-to-be-used-with-extension'
+  output-file : 'output-file-name-with-extension'
+  tmp-file-prefix : 'prefix-for-temporary-output-files-without-extension'
+
+processor: processor-module-key
+
+processor-modules:
+  odt:
+  docx:
+  pdf:

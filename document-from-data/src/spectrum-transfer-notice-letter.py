@@ -20,7 +20,7 @@ DATA_SOURCES = {
     'gsheet': {
         'sheet': 'HR__recruitment-confirmation-transfer-separation',
         'worksheet': 'transfer',
-        'data-range': 'A3:L'
+        'data-range': 'A3:M'
     }
 }
 
@@ -36,6 +36,7 @@ DATA_PROCESSORS = {
             {'column': 8, 'key': 'to-unit'},
             {'column': 9, 'key': 'supervisor'},
             {'column': 10, 'key': 'supervisor-designation'},
+            {'column': 12, 'key': 'letter-date'},
         ],
         'filter-column': 11,
         'filter-value': 'yes',
@@ -131,7 +132,7 @@ def output_data(output_processor, processed_data):
         temp_files.append(temp_file_path)
 
         # generate the file
-        fields = {"sequence": item["sequence"], "salutation": item["salutation"], "name": item["name"], "effectivefrom": item["effective-from"], "address": item["address"], "fromunit": item["from-unit"], "tounit": item["to-unit"], "supervisor": item["supervisor"], "superdesignation": item["supervisor-designation"]}
+        fields = {"sequence": item["sequence"], "salutation": item["salutation"], "name": item["name"], "effectivefrom": item["effective-from"], "address": item["address"], "fromunit": item["from-unit"], "tounit": item["to-unit"], "supervisor": item["supervisor"], "superdesignation": item["supervisor-designation"], "letterdate": item["letter-date"]}
         replace_fields(se_output_spec['input-template'], temp_file_path, fields)
         debug(f'.. generating odt for {item["name"]} ... done')
 

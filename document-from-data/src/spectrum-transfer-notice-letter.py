@@ -18,8 +18,8 @@ DATA_CONNECTORS = {
 
 DATA_SOURCES = {
     'gsheet': {
-        'sheet': 'HR__transfer-letters-notices',
-        'worksheet': 'spectrum-2022',
+        'sheet': 'HR__recruitment-confirmation-transfer-separation',
+        'worksheet': 'transfer',
         'data-range': 'A3:L'
     }
 }

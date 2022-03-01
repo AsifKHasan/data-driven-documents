@@ -1,0 +1,9 @@
+google-auth
+gspread
+pygsheets
+num2words
+jinja2
+latex
+httplib2
+oauth2client
+pydrive

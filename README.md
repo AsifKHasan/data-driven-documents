@@ -47,6 +47,12 @@
 
 
 # Running scripts/programs
+# offer-letter
+1. cd to D:\projects\data-driven-documents\document-from-data\src
+if working for Spectrum
+2.  run command ```python spectrum-offer-letter.py```
+3. if everything goes well you will get individual letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\offer-letter\tmp and combined letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\offer-letter
+
 # transfer-letter
 1. cd to D:\projects\data-driven-documents\document-from-data\src
 if working for Spectrum

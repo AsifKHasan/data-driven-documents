@@ -21,7 +21,17 @@ DATA_SOURCES = {
         'sheet': 'HR__appointment-confirmation-transfer-separation',
         'worksheet': 'offer',
         'data-range': 'A3:L'
-    }
+    },
+    'gsheet-transfer-letter': {
+        'sheet': 'HR__appointment-confirmation-transfer-separation',
+        'worksheet': 'transfer',
+        'data-range': 'A3:M'
+    },
+    'gsheet-salary-enhancement': {
+        'sheet': 'spectrum__salary-revision__2022',
+        'worksheet': 'spectrum-2022',
+        'data-range': 'A5:T'
+    },
 }
 
 DATA_PROCESSORS = {
@@ -41,7 +51,41 @@ DATA_PROCESSORS = {
         ],
         'filter-column': 11,
         'filter-value': 'yes',
-    }
+    },
+    'transfer-letter': {
+        'columns': [
+            {'column': 0, 'key': 'sequence'},
+            {'column': 1, 'key': 'salutation'},
+            {'column': 2, 'key': 'name'},
+            {'column': 3, 'key': 'effectivefrom'},
+            {'column': 4, 'key': 'address'},
+            {'column': 7, 'key': 'fromunit'},
+            {'column': 8, 'key': 'tounit'},
+            {'column': 9, 'key': 'supervisor'},
+            {'column': 10, 'key': 'superdesignation'},
+            {'column': 11, 'key': 'letterdate'},
+        ],
+        'filter-column': 12,
+        'filter-value': 'yes',
+    },
+    'salary-enhancement': {
+        'columns': [
+            {'column': 0, 'key': 'sequence'},
+            {'column': 1, 'key': 'name'},
+            {'column': 2, 'key': 'salutation'},
+            {'column': 3, 'key': 'wing'},
+            {'column': 4, 'key': 'unit'},
+            {'column': 5, 'key': 'supervisor'},
+            {'column': 11, 'key': 'salary'},
+            {'column': 12, 'key': 'increment'},
+            {'column': 15, 'key': 'currentgrade'},
+            {'column': 16, 'key': 'promotion'},
+            {'column': 17, 'key': 'grade'},
+            {'column': 18, 'key': 'designation'},
+        ],
+        'filter-column': 19,
+        'filter-value': 'yes',
+    },
 }
 
 DATA_SERIALIZERS = {
@@ -53,7 +97,25 @@ DATA_SERIALIZERS = {
         'merge-files': True,
         'merged-file-pattern': 'spectrum__offer-letter__2022.odt',
         'pdf-output-for-merged-file': True,
-    }
+    },
+    'transfer-letter': {
+        'input-template': '../template/spectrum/transfer-letter/HR__transfer-letter-template__2022.odt',
+        'output-dir': '../out/spectrum/transfer-letter',
+        'output-file-pattern': 'spectrum__transfer-letter__2022__{0}__{1}.odt',
+        'pdf-output-for-files': True,
+        'merge-files': True,
+        'merged-file-pattern': 'spectrum__transfer-letter__2022.odt',
+        'pdf-output-for-merged-file': True,
+    },
+    'salary-enhancement': {
+        'input-template': '../template/spectrum/salary-enhancement/HR__salary-enhancement-template__2022.odt',
+        'output-dir': '../out/spectrum/salary-enhancement',
+        'output-file-pattern': 'spectrum__salary-enhancement__2022__{0}__{1}.odt',
+        'pdf-output-for-files': True,
+        'merge-files': True,
+        'merged-file-pattern': 'spectrum__salary-enhancement__2022.odt',
+        'pdf-output-for-merged-file': True,
+    },
 }
 
 ''' authenticate to data service

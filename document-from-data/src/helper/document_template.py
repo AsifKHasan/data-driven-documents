@@ -27,6 +27,11 @@ DATA_SOURCES = {
         'worksheet': 'transfer',
         'data-range': 'A3:M'
     },
+    'gsheet-separation-letter': {
+        'sheet': 'HR__appointment-confirmation-transfer-separation',
+        'worksheet': 'separation',
+        'data-range': 'A3:I'
+    },
     'gsheet-salary-enhancement': {
         'sheet': 'spectrum__salary-revision__2022',
         'worksheet': 'spectrum-2022',
@@ -68,6 +73,20 @@ DATA_PROCESSORS = {
         'filter-column': 12,
         'filter-value': 'yes',
     },
+    'separation-letter': {
+        'columns': [
+            {'column': 0, 'key': 'sequence'},
+            {'column': 1, 'key': 'salutation'},
+            {'column': 2, 'key': 'name'},
+            {'column': 3, 'key': 'address'},
+            {'column': 4, 'key': 'effectivefrom'},
+            {'column': 5, 'key': 'clause'},
+            {'column': 6, 'key': 'reasontext'},
+            {'column': 7, 'key': 'letterdate'},
+        ],
+        'filter-column': 8,
+        'filter-value': 'yes',
+    },
     'salary-enhancement': {
         'columns': [
             {'column': 0, 'key': 'sequence'},
@@ -107,6 +126,15 @@ DATA_SERIALIZERS = {
         'pdf-output-for-files': True,
         'merge-files': True,
         'merged-file-pattern': 'spectrum__transfer-letter__2022.odt',
+        'pdf-output-for-merged-file': True,
+    },
+    'separation-letter': {
+        'input-template': '../template/spectrum/separation-letter/HR__separation-letter-template__2022.odt',
+        'output-dir': '../out/spectrum/separation-letter',
+        'output-file-pattern': 'spectrum__separation-letter__2022__{0}__{1}.odt',
+        'pdf-output-for-files': True,
+        'merge-files': True,
+        'merged-file-pattern': 'spectrum__separation-letter__2022.odt',
         'pdf-output-for-merged-file': True,
     },
     'salary-enhancement': {

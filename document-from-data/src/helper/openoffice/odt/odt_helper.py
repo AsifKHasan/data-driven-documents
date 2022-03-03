@@ -14,7 +14,7 @@ import ooopy.Transforms as     Transforms
 if platform.system() == 'Windows':
     LIBREOFFICE_EXECUTABLE = 'C:/Program Files/LibreOffice/program/soffice.exe'
 else:
-    LIBREOFFICE_EXECUTABLE = 'soffice.exe'
+    LIBREOFFICE_EXECUTABLE = 'soffice'
 
 ''' given an input template odt and field value list, outputs a file with fields replaced with values
 '''

@@ -30,7 +30,7 @@ DATA_SOURCES = {
     'gsheet-salary-enhancement': {
         'sheet': 'spectrum__salary-revision__2022',
         'worksheet': 'spectrum-2022',
-        'data-range': 'A5:T'
+        'data-range': 'A5:V'
     },
 }
 
@@ -82,8 +82,10 @@ DATA_PROCESSORS = {
             {'column': 16, 'key': 'promotion'},
             {'column': 17, 'key': 'grade'},
             {'column': 18, 'key': 'designation'},
+            {'column': 19, 'key': 'effectivefrom'},
+            {'column': 20, 'key': 'letterdate'},
         ],
-        'filter-column': 19,
+        'filter-column': 21,
         'filter-value': 'yes',
     },
 }

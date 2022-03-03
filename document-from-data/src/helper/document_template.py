@@ -17,30 +17,35 @@ DATA_CONNECTORS = {
 }
 
 DATA_SOURCES = {
-    'gsheet-offer-letter': {
+    'spectrum-offer-letter': {
         'sheet': 'HR__appointment-confirmation-transfer-separation',
         'worksheet': 'offer',
         'data-range': 'A3:L'
     },
-    'gsheet-transfer-letter': {
+    'spectrum-transfer-letter': {
         'sheet': 'HR__appointment-confirmation-transfer-separation',
         'worksheet': 'transfer',
         'data-range': 'A3:M'
     },
-    'gsheet-separation-letter': {
+    'spectrum-separation-letter': {
         'sheet': 'HR__appointment-confirmation-transfer-separation',
         'worksheet': 'separation',
         'data-range': 'A3:I'
     },
-    'gsheet-salary-enhancement': {
+    'spectrum-salary-enhancement': {
         'sheet': 'spectrum__salary-revision__2022',
         'worksheet': 'spectrum-2022',
+        'data-range': 'A5:V'
+    },
+    'celloscope-salary-enhancement': {
+        'sheet': 'celloscope__salary-revision__2022',
+        'worksheet': 'celloscope-2022',
         'data-range': 'A5:V'
     },
 }
 
 DATA_PROCESSORS = {
-    'offer-letter': {
+    'spectrum-offer-letter': {
         'columns': [
             {'column': 0, 'key': 'sequence'},
             {'column': 1, 'key': 'salutation'},
@@ -57,7 +62,7 @@ DATA_PROCESSORS = {
         'filter-column': 11,
         'filter-value': 'yes',
     },
-    'transfer-letter': {
+    'spectrum-transfer-letter': {
         'columns': [
             {'column': 0, 'key': 'sequence'},
             {'column': 1, 'key': 'salutation'},
@@ -73,7 +78,7 @@ DATA_PROCESSORS = {
         'filter-column': 12,
         'filter-value': 'yes',
     },
-    'separation-letter': {
+    'spectrum-separation-letter': {
         'columns': [
             {'column': 0, 'key': 'sequence'},
             {'column': 1, 'key': 'salutation'},
@@ -87,11 +92,11 @@ DATA_PROCESSORS = {
         'filter-column': 8,
         'filter-value': 'yes',
     },
-    'salary-enhancement': {
+    'spectrum-salary-enhancement': {
         'columns': [
             {'column': 0, 'key': 'sequence'},
-            {'column': 1, 'key': 'name'},
-            {'column': 2, 'key': 'salutation'},
+            {'column': 1, 'key': 'salutation'},
+            {'column': 2, 'key': 'name'},
             {'column': 3, 'key': 'wing'},
             {'column': 4, 'key': 'unit'},
             {'column': 5, 'key': 'supervisor'},
@@ -107,10 +112,24 @@ DATA_PROCESSORS = {
         'filter-column': 21,
         'filter-value': 'yes',
     },
+    'celloscope-salary-enhancement': {
+        'columns': [
+            {'column': 0, 'key': 'sequence'},
+            {'column': 1, 'key': 'salutation'},
+            {'column': 2, 'key': 'name'},
+            {'column': 7, 'key': 'designation'},
+            {'column': 16, 'key': 'salary'},
+            {'column': 17, 'key': 'increment'},
+            {'column': 19, 'key': 'effectivefrom'},
+            {'column': 20, 'key': 'letterdate'},
+        ],
+        'filter-column': 21,
+        'filter-value': 'yes',
+    },
 }
 
 DATA_SERIALIZERS = {
-    'offer-letter': {
+    'spectrum-offer-letter': {
         'input-template': '../template/spectrum/offer-letter/HR__offer-letter-template__2022.odt',
         'output-dir': '../out/spectrum/offer-letter',
         'output-file-pattern': 'spectrum__offer-letter__2022__{0}__{1}.odt',
@@ -119,7 +138,7 @@ DATA_SERIALIZERS = {
         'merged-file-pattern': 'spectrum__offer-letter__2022.odt',
         'pdf-output-for-merged-file': True,
     },
-    'transfer-letter': {
+    'spectrum-transfer-letter': {
         'input-template': '../template/spectrum/transfer-letter/HR__transfer-letter-template__2022.odt',
         'output-dir': '../out/spectrum/transfer-letter',
         'output-file-pattern': 'spectrum__transfer-letter__2022__{0}__{1}.odt',
@@ -128,7 +147,7 @@ DATA_SERIALIZERS = {
         'merged-file-pattern': 'spectrum__transfer-letter__2022.odt',
         'pdf-output-for-merged-file': True,
     },
-    'separation-letter': {
+    'spectrum-separation-letter': {
         'input-template': '../template/spectrum/separation-letter/HR__separation-letter-template__2022.odt',
         'output-dir': '../out/spectrum/separation-letter',
         'output-file-pattern': 'spectrum__separation-letter__2022__{0}__{1}.odt',
@@ -137,13 +156,22 @@ DATA_SERIALIZERS = {
         'merged-file-pattern': 'spectrum__separation-letter__2022.odt',
         'pdf-output-for-merged-file': True,
     },
-    'salary-enhancement': {
+    'spectrum-salary-enhancement': {
         'input-template': '../template/spectrum/salary-enhancement/HR__salary-enhancement-template__2022.odt',
         'output-dir': '../out/spectrum/salary-enhancement',
         'output-file-pattern': 'spectrum__salary-enhancement__2022__{0}__{1}.odt',
         'pdf-output-for-files': True,
         'merge-files': True,
         'merged-file-pattern': 'spectrum__salary-enhancement__2022.odt',
+        'pdf-output-for-merged-file': True,
+    },
+    'celloscope-salary-enhancement': {
+        'input-template': '../template/celloscope/salary-enhancement/celloscope__salary-enhancement-template__2022.odt',
+        'output-dir': '../out/celloscope/salary-enhancement',
+        'output-file-pattern': 'celloscope__salary-enhancement__2022__{0}__{1}.odt',
+        'pdf-output-for-files': True,
+        'merge-files': True,
+        'merged-file-pattern': 'celloscope__salary-enhancement__2022.odt',
         'pdf-output-for-merged-file': True,
     },
 }

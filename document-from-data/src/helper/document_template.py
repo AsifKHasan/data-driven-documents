@@ -22,6 +22,11 @@ DATA_SOURCES = {
         'worksheet': 'offer',
         'data-range': 'A3:L'
     },
+    'spectrum-appointment-letter': {
+        'sheet': 'HR__appointment-confirmation-transfer-separation',
+        'worksheet': 'appointment',
+        'data-range': 'A3:N'
+    },
     'spectrum-transfer-letter': {
         'sheet': 'HR__appointment-confirmation-transfer-separation',
         'worksheet': 'transfer',
@@ -47,7 +52,7 @@ DATA_SOURCES = {
 DATA_PROCESSORS = {
     'spectrum-offer-letter': {
         'columns': [
-            {'column': 0, 'key': 'sequence'},
+            {'column': 0, 'key': 'seq'},
             {'column': 1, 'key': 'salutation'},
             {'column': 2, 'key': 'name'},
             {'column': 3, 'key': 'address'},
@@ -62,9 +67,28 @@ DATA_PROCESSORS = {
         'filter-column': 11,
         'filter-value': 'yes',
     },
+    'spectrum-appointment-letter': {
+        'columns': [
+            {'column': 0, 'key': 'seq'},
+            {'column': 1, 'key': 'salutation'},
+            {'column': 2, 'key': 'name'},
+            {'column': 3, 'key': 'address'},
+            {'column': 4, 'key': 'effectivefrom'},
+            {'column': 5, 'key': 'designation'},
+            {'column': 6, 'key': 'grade'},
+            {'column': 7, 'key': 'wing'},
+            {'column': 8, 'key': 'unit'},
+            {'column': 9, 'key': 'supervisor'},
+            {'column': 10, 'key': 'remuneration'},
+            {'column': 11, 'key': 'site'},
+            {'column': 12, 'key': 'letterdate'},
+        ],
+        'filter-column': 13,
+        'filter-value': 'yes',
+    },
     'spectrum-transfer-letter': {
         'columns': [
-            {'column': 0, 'key': 'sequence'},
+            {'column': 0, 'key': 'seq'},
             {'column': 1, 'key': 'salutation'},
             {'column': 2, 'key': 'name'},
             {'column': 3, 'key': 'effectivefrom'},
@@ -80,7 +104,7 @@ DATA_PROCESSORS = {
     },
     'spectrum-separation-letter': {
         'columns': [
-            {'column': 0, 'key': 'sequence'},
+            {'column': 0, 'key': 'seq'},
             {'column': 1, 'key': 'salutation'},
             {'column': 2, 'key': 'name'},
             {'column': 3, 'key': 'address'},
@@ -94,7 +118,7 @@ DATA_PROCESSORS = {
     },
     'spectrum-salary-enhancement': {
         'columns': [
-            {'column': 0, 'key': 'sequence'},
+            {'column': 0, 'key': 'seq'},
             {'column': 1, 'key': 'salutation'},
             {'column': 2, 'key': 'name'},
             {'column': 3, 'key': 'wing'},
@@ -114,7 +138,7 @@ DATA_PROCESSORS = {
     },
     'celloscope-salary-enhancement': {
         'columns': [
-            {'column': 0, 'key': 'sequence'},
+            {'column': 0, 'key': 'seq'},
             {'column': 1, 'key': 'salutation'},
             {'column': 2, 'key': 'name'},
             {'column': 7, 'key': 'designation'},
@@ -136,6 +160,15 @@ DATA_SERIALIZERS = {
         'pdf-output-for-files': True,
         'merge-files': True,
         'merged-file-pattern': 'spectrum__offer-letter__2022.odt',
+        'pdf-output-for-merged-file': True,
+    },
+    'spectrum-appointment-letter': {
+        'input-template': '../template/spectrum/appointment-letter/HR__appointment-letter-template__2022.odt',
+        'output-dir': '../out/spectrum/appointment-letter',
+        'output-file-pattern': 'spectrum__appointment-letter__2022__{0}__{1}.odt',
+        'pdf-output-for-files': True,
+        'merge-files': True,
+        'merged-file-pattern': 'spectrum__appointment-letter__2022.odt',
         'pdf-output-for-merged-file': True,
     },
     'spectrum-transfer-letter': {
@@ -250,7 +283,7 @@ def output_data(output_processor, processed_data):
     # generate files for each data row
     temp_files = []
     for item in data:
-        temp_file_path = tmp_dir + '/' + se_output_spec['output-file-pattern'].format(item['sequence'], item['name'].lower().replace(' ', '-'))
+        temp_file_path = tmp_dir + '/' + se_output_spec['output-file-pattern'].format(item['seq'], item['name'].lower().replace(' ', '-'))
         temp_files.append(temp_file_path)
 
         # dictionary of fields

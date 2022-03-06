@@ -167,9 +167,9 @@ DATA_SERIALIZERS = {
         'output-dir': '../out/spectrum/appointment-letter',
         'output-file-pattern': 'spectrum__appointment-letter__2022__{0}__{1}.odt',
         'pdf-output-for-files': True,
-        'merge-files': True,
+        'merge-files': False,
         'merged-file-pattern': 'spectrum__appointment-letter__2022.odt',
-        'pdf-output-for-merged-file': True,
+        'pdf-output-for-merged-file': False,
     },
     'spectrum-transfer-letter': {
         'input-template': '../template/spectrum/transfer-letter/HR__transfer-letter-template__2022.odt',

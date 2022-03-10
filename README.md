@@ -27,39 +27,36 @@
 5. cd to D:\projects\data-driven-documents\salary-sheet
 6. run command ```pip install -r requirements.txt```. See if there is any error or not. If you get errors share the output with me.
 
-## gsheet-to-docx
-1. cd to d:\projects
-2. run ```git clone https://github.com/AsifKHasan/gsheet-to-docx.git``` and send me the output
-3. cd to D:\projects\gsheet-to-docx
-4. run command ```pip install -r requirements.txt```. See if there is any error or not. If you get errors share the output with me.
-
 
 # Configure the scripts/programs
 ## data-driven-documents/document-from-data
 1. get a file named *credential.json* from me and paste/copy to D:\projects\data-driven-documents\document-from-data\conf
 
-## data-driven-documents/document-from-data
+## data-driven-documents/salary-sheet
 1. get a file named *credential.json* from me and paste/copy to D:\projects\data-driven-documents\salary-sheet\conf
 
-## gsheet-to-docx
-1. get a file named *credential.json* from me and paste/copy to D:\projects\gsheet-to-docx\conf
-2. copy the file D:\projects\gsheet-to-docx\conf\config.yml.dist as a new file D:\projects\gsheet-to-docx\conf\config.yml
+## type of documents for document-from-data
+The following document types are available
+a. appointment-letter
+b. experience-certificate
+c. introduction-letter
+d. offer-letter
+e. release-letter
+f. salary-certificate
+g. salary-enhancement-letter
+h. separation-letter
+i. showcause-letter
+j. transfer-letter
+k. warning-letter
 
 
 # Running scripts/programs
-# offer-letter
-1. cd to D:\projects\data-driven-documents\document-from-data\src
-if working for Spectrum
-2.  run command ```python spectrum-offer-letter.py```
-3. if everything goes well you will get individual letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\offer-letter\tmp and combined letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\offer-letter
+## document-from-data
+1. cd to D:\projects\data-driven-documents\document-from-data
+2a. if working for Spectrum, run command ```spectrum-document DOC``` where DOC is the type of the document
+3. if everything goes well you will get individual letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\DOC\tmp and combined letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\DOC
 
-# transfer-letter
-1. cd to D:\projects\data-driven-documents\document-from-data\src
-if working for Spectrum
-2.  run command ```python spectrum-transfer-notice-letter.py```
-3. if everything goes well you will get individual letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\transfer-notice\tmp and combined letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\transfer-notice
-
-# salary-sheet
+## salary-sheet
 1. cd to D:\projects\data-driven-documents\salary-sheet\src
 2a. if working for Spectrum run command ```python spectrum-salary-advice-app.py```
 2b. if working for SSCL run command ```python sscl-salary-advice-app.py```

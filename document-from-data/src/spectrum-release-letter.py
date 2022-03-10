@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-    generate templated separation letter from data
+    generate templated release letter from data
 '''
 
 from helper.document_template import *
@@ -8,7 +8,7 @@ from helper.document_template import *
 if __name__ == '__main__':
     org = 'spectrum'
     provider = 'google'
-    document = 'separation-letter'
+    document = 'release-letter'
 
     # get the appropriate data-connector
     data_connector = authenticate_to_data_service(org, provider)

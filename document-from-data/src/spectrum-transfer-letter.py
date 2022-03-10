@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
 '''
-    generate templated transfer document (letter) from data
+    generate templated transfer letter from data
 '''
 
 from helper.document_template import *
 
 if __name__ == '__main__':
+    org = 'spectrum'
+    provider = 'google'
+    document = 'transfer-letter'
+
     # get the appropriate data-connector
-    data_connector = authenticate_to_data_service('google')
+    data_connector = authenticate_to_data_service(org, provider)
 
     # get raw data from source
-    source_data = acquire_data('spectrum-transfer-letter', data_connector)
+    source_data = acquire_data(org, document, data_connector)
 
     # get processed data from the raw data
-    processed_data = process_data('spectrum-transfer-letter', source_data)
+    processed_data = process_data(org, document, source_data)
 
     # serialize final output from data
-    output_data('spectrum-transfer-letter', processed_data)
+    output_data(org, document, processed_data)

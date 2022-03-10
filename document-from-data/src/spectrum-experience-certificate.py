@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-    generate templated salary enhancement letter from data
+    generate templated experience certificate from data
 '''
 
 from helper.document_template import *
@@ -10,19 +10,22 @@ from helper.document_template import *
 '''
 def post_process_data(processed_data):
     for item in processed_data['data']:
-        if item["promotion"] == 'yes':
-            item["promotion"] = ' with promotion'
+        if item["salutation"] == 'Mr.':
+            item["hisher"] = 'his'
+            item["himher"] = 'him'
+            item["heshe"] = 'he'
         else:
-            item["promotion"] = ''
-            item["grade"] = item["currentgrade"]
+            item["hisher"] = 'her'
+            item["himher"] = 'her'
+            item["heshe"] = 'she'
 
     return processed_data
 
 
 if __name__ == '__main__':
-    provider = 'google'
     org = 'spectrum'
-    document = 'salary-enhancement-letter'
+    provider = 'google'
+    document = 'experience-certificate'
 
     # get the appropriate data-connector
     data_connector = authenticate_to_data_service(org, provider)

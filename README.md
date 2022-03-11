@@ -4,6 +4,7 @@
 3. MikTex - https://miktex.org/download
 4. LibreOffice - https://www.libreoffice.org/download/download/
 5. Pandoc - https://pandoc.org/installing.html
+6. Perl - https://strawberryperl.com/
 
 
 # Verify the installations
@@ -16,7 +17,7 @@
 7. run command ```miktex --version``` and send me the output
 8. run command ```"C:\Program Files\LibreOffice\program\soffice"  --version``` and send me the output
 9. run command ```pandoc --version``` and send me the output
-
+10. run command ```perl --version``` and send me the output
 
 # Get the scripts/programs
 ## data-driven-documents

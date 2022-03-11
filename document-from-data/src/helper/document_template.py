@@ -4,6 +4,7 @@
 '''
 
 import os
+import re
 from pprint import pprint
 
 from helper.google.google_helper import *
@@ -12,6 +13,11 @@ from helper.logger import *
 
 DATA_CONNECTORS = {
     'spectrum' : {
+        'google': {
+            'credential-json': '../conf/credential.json'
+        },
+    },
+    'SSCL' : {
         'google': {
             'credential-json': '../conf/credential.json'
         },
@@ -25,7 +31,7 @@ DATA_CONNECTORS = {
 
 DATA_SOURCES = {
     'spectrum' : {
-        'appointment-letter': {
+        'issued-invoice': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'appointment',
             'data-range': 'A3:N'
@@ -65,10 +71,27 @@ DATA_SOURCES = {
             'worksheet': 'separation',
             'data-range': 'A3:I'
         },
+        'showcause-letter': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'showcause',
+            'data-range': 'A3:J'
+        },
         'transfer-letter': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'transfer',
             'data-range': 'A3:M'
+        },
+        'warning-letter': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'warning',
+            'data-range': 'A3:H'
+        },
+    },
+    'SSCL' : {
+        'issued-invoice': {
+            'sheet': 'SSCL__po-invoice',
+            'worksheet': 'issued-invoice',
+            'data-range': 'A3:T'
         },
     },
     'celloscope' : {
@@ -79,6 +102,7 @@ DATA_SOURCES = {
         },
     },
 }
+
 
 DATA_PROCESSORS = {
     'spectrum' : {
@@ -223,6 +247,21 @@ DATA_PROCESSORS = {
             'filter-column': 8,
             'filter-value': 'yes',
         },
+        'showcause-letter': {
+            'columns': [
+                {'column': 0, 'key': 'seq'},
+                {'column': 1, 'key': 'salutation'},
+                {'column': 2, 'key': 'name'},
+                {'column': 3, 'key': 'subject'},
+                {'column': 4, 'key': 'incidence'},
+                {'column': 5, 'key': 'submitto'},
+                {'column': 6, 'key': 'submissiondate'},
+                {'column': 7, 'key': 'signatory'},
+                {'column': 8, 'key': 'letterdate'},
+            ],
+            'filter-column': 9,
+            'filter-value': 'yes',
+        },
         'transfer-letter': {
             'columns': [
                 {'column': 0, 'key': 'seq'},
@@ -237,6 +276,46 @@ DATA_PROCESSORS = {
                 {'column': 11, 'key': 'letterdate'},
             ],
             'filter-column': 12,
+            'filter-value': 'yes',
+        },
+        'warning-letter': {
+            'columns': [
+                {'column': 0, 'key': 'seq'},
+                {'column': 1, 'key': 'salutation'},
+                {'column': 2, 'key': 'name'},
+                {'column': 3, 'key': 'subject'},
+                {'column': 4, 'key': 'incidence'},
+                {'column': 5, 'key': 'signatory'},
+                {'column': 6, 'key': 'letterdate'},
+            ],
+            'filter-column': 7,
+            'filter-value': 'yes',
+        },
+    },
+    'SSCL' : {
+        'issued-invoice': {
+            'columns': [
+                {'column': 0, 'key': 'seq'},
+                {'column': 1, 'key': 'invoicedate'},
+                {'column': 2, 'key': 'invoiceref'},
+                {'column': 3, 'key': 'clientname'},
+                {'column': 4, 'key': 'item'},
+                {'column': 5, 'key': 'uom'},
+                {'column': 6, 'key': 'qty'},
+                {'column': 7, 'key': 'unitprice'},
+                {'column': 8, 'key': 'podate'},
+                {'column': 9, 'key': 'povalue'},
+                {'column': 10, 'key': 'vatpct'},
+                {'column': 11, 'key': 'poref'},
+                {'column': 12, 'key': 'claimterms'},
+                {'column': 13, 'key': 'clientaddress'},
+                {'column': 14, 'key': 'clientphone'},
+                {'column': 15, 'key': 'clientfax'},
+                {'column': 16, 'key': 'clienturl'},
+                {'column': 17, 'key': 'contactname'},
+                {'column': 18, 'key': 'contactphone'},
+            ],
+            'filter-column': 19,
             'filter-value': 'yes',
         },
     },
@@ -263,7 +342,7 @@ DATA_SERIALIZERS = {
         'appointment-letter': {
             'input-template': '../template/spectrum/appointment-letter/HR__appointment-letter-template__2022.odt',
             'output-dir': '../out/spectrum/appointment-letter',
-            'output-file-pattern': 'spectrum__appointment-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__appointment-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': False,
             'merged-file-pattern': 'spectrum__appointment-letter__2022.odt',
@@ -272,7 +351,7 @@ DATA_SERIALIZERS = {
         'experience-certificate': {
             'input-template': '../template/spectrum/experience-certificate/HR__experience-certificate-template__2022.odt',
             'output-dir': '../out/spectrum/experience-certificate',
-            'output-file-pattern': 'spectrum__experience-certificate__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__experience-certificate__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__experience-certificate__2022.odt',
@@ -281,7 +360,7 @@ DATA_SERIALIZERS = {
         'introduction-letter': {
             'input-template': '../template/spectrum/introduction-letter/HR__introduction-letter-template__2022.odt',
             'output-dir': '../out/spectrum/introduction-letter',
-            'output-file-pattern': 'spectrum__introduction-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__introduction-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__introduction-letter__2022.odt',
@@ -290,7 +369,7 @@ DATA_SERIALIZERS = {
         'offer-letter': {
             'input-template': '../template/spectrum/offer-letter/HR__offer-letter-template__2022.odt',
             'output-dir': '../out/spectrum/offer-letter',
-            'output-file-pattern': 'spectrum__offer-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__offer-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__offer-letter__2022.odt',
@@ -299,7 +378,7 @@ DATA_SERIALIZERS = {
         'release-letter': {
             'input-template': '../template/spectrum/release-letter/HR__release-letter-template__2022.odt',
             'output-dir': '../out/spectrum/release-letter',
-            'output-file-pattern': 'spectrum__release-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__release-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__release-letter__2022.odt',
@@ -308,7 +387,7 @@ DATA_SERIALIZERS = {
         'salary-certificate': {
             'input-template': '../template/spectrum/salary-certificate/HR__salary-certificate-template__2022.odt',
             'output-dir': '../out/spectrum/salary-certificate',
-            'output-file-pattern': 'spectrum__salary-certificate__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__salary-certificate__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__salary-certificate__2022.odt',
@@ -317,7 +396,7 @@ DATA_SERIALIZERS = {
         'salary-enhancement-letter': {
             'input-template': '../template/spectrum/salary-enhancement-letter/HR__salary-enhancement-letter-template__2022.odt',
             'output-dir': '../out/spectrum/salary-enhancement-letter',
-            'output-file-pattern': 'spectrum__salary-enhancement-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__salary-enhancement-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__salary-enhancement-letter__2022.odt',
@@ -326,27 +405,56 @@ DATA_SERIALIZERS = {
         'separation-letter': {
             'input-template': '../template/spectrum/separation-letter/HR__separation-letter-template__2022.odt',
             'output-dir': '../out/spectrum/separation-letter',
-            'output-file-pattern': 'spectrum__separation-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__separation-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__separation-letter__2022.odt',
             'pdf-output-for-merged-file': True,
         },
+        'showcause-letter': {
+            'input-template': '../template/spectrum/showcause-letter/HR__showcause-letter-template__2022.odt',
+            'output-dir': '../out/spectrum/showcause-letter',
+            'output-file-pattern': 'spectrum__showcause-letter__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': True,
+            'merged-file-pattern': 'spectrum__showcause-letter__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
         'transfer-letter': {
             'input-template': '../template/spectrum/transfer-letter/HR__transfer-letter-template__2022.odt',
             'output-dir': '../out/spectrum/transfer-letter',
-            'output-file-pattern': 'spectrum__transfer-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'spectrum__transfer-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__transfer-letter__2022.odt',
             'pdf-output-for-merged-file': True,
+        },
+        'warning-letter': {
+            'input-template': '../template/spectrum/warning-letter/HR__warning-letter-template__2022.odt',
+            'output-dir': '../out/spectrum/warning-letter',
+            'output-file-pattern': 'spectrum__warning-letter__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': True,
+            'merged-file-pattern': 'spectrum__warning-letter__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
+    },
+    'SSCL' : {
+        'issued-invoice': {
+            'input-template': '../template/sscl/issued-invoice/SSCL__issued-invoice-template__2022.odt',
+            'output-dir': '../out/sscl/issued-invoice',
+            'output-file-pattern': 'sscl__issued-invoice__2022__{invoiceref}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__issued-invoice__2022.odt',
+            'pdf-output-for-merged-file': False,
         },
     },
     'celloscope' : {
         'salary-enhancement-letter': {
             'input-template': '../template/celloscope/salary-enhancement-letter/celloscope__salary-enhancement-letter-template__2022.odt',
             'output-dir': '../out/celloscope/salary-enhancement-letter',
-            'output-file-pattern': 'celloscope__salary-enhancement-letter__2022__{0}__{1}.odt',
+            'output-file-pattern': 'celloscope__salary-enhancement-letter__2022__{seq}__{name}.odt',
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'celloscope__salary-enhancement-letter__2022.odt',
@@ -428,12 +536,19 @@ def output_data(org, output_processor, processed_data):
     # generate files for each data row
     temp_files = []
     for item in data:
-        temp_file_path = tmp_dir + '/' + se_output_spec['output-file-pattern'].format(item['seq'], item['name'].lower().replace(' ', '-'))
+        # output-file-pattern may have variables/placeholders (enclosed in {}), let us identify those
+        file_name = se_output_spec['output-file-pattern']
+        r1 = re.findall(r"{\w+}", file_name)
+        for var in r1:
+            key = var[1:-1]
+            file_name = file_name.replace(var, item[key].lower().replace(' ', '-'))
+
+        temp_file_path = tmp_dir + '/' + file_name
         temp_files.append(temp_file_path)
 
         # generate the file
         replace_fields(se_output_spec['input-template'], temp_file_path, item)
-        debug(f'.. {org} : generating odt for {item["name"]} ... done')
+        debug(f'.. {org} : generating odt for {temp_file_path} ... done')
 
         # generate pdf if instructed to do so
         if se_output_spec['pdf-output-for-files']:

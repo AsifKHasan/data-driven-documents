@@ -52,7 +52,7 @@ k. warning-letter
 
 # Running scripts/programs
 ## document-from-data
-1. cd to D:\projects\data-driven-documents\document-from-data
+1. cd to ```D:\projects\data-driven-documents\document-from-data```
 2a. if working for Spectrum, run command ```spectrum-document DOC``` where DOC is the type of the document
 3. if everything goes well you will get individual letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\DOC\tmp and combined letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\DOC
 

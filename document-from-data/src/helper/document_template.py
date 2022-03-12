@@ -5,10 +5,13 @@
 
 import os
 import re
+
+from odf import table, text
 from pprint import pprint
 
 from helper.google.google_helper import *
 from helper.openoffice.odt.odt_helper import *
+from helper.openoffice.odf_helper import *
 from helper.logger import *
 
 DATA_CONNECTORS = {
@@ -31,7 +34,7 @@ DATA_CONNECTORS = {
 
 DATA_SOURCES = {
     'spectrum' : {
-        'issued-invoice': {
+        'appointment-letter': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'appointment',
             'data-range': 'A3:N'
@@ -91,7 +94,7 @@ DATA_SOURCES = {
         'issued-invoice': {
             'sheet': 'SSCL__po-invoice',
             'worksheet': 'issued-invoice',
-            'data-range': 'A3:T'
+            'data-range': 'A3:X'
         },
     },
     'celloscope' : {
@@ -103,9 +106,8 @@ DATA_SOURCES = {
     },
 }
 
-
 DATA_PROCESSORS = {
-    'spectrum' : {
+    'spectrum': {
         'appointment-letter': {
             'columns': [
                 {'column': 0, 'key': 'seq'},
@@ -292,7 +294,7 @@ DATA_PROCESSORS = {
             'filter-value': 'yes',
         },
     },
-    'SSCL' : {
+    'SSCL': {
         'issued-invoice': {
             'columns': [
                 {'column': 0, 'key': 'seq'},
@@ -303,23 +305,41 @@ DATA_PROCESSORS = {
                 {'column': 5, 'key': 'uom'},
                 {'column': 6, 'key': 'qty'},
                 {'column': 7, 'key': 'unitprice'},
-                {'column': 8, 'key': 'podate'},
-                {'column': 9, 'key': 'povalue'},
-                {'column': 10, 'key': 'vatpct'},
-                {'column': 11, 'key': 'poref'},
-                {'column': 12, 'key': 'claimterms'},
-                {'column': 13, 'key': 'clientaddress'},
-                {'column': 14, 'key': 'clientphone'},
-                {'column': 15, 'key': 'clientfax'},
-                {'column': 16, 'key': 'clienturl'},
-                {'column': 17, 'key': 'contactname'},
-                {'column': 18, 'key': 'contactphone'},
+                {'column': 8, 'key': 'itemtotal'},
+                {'column': 9, 'key': 'invoicenet'},
+                {'column': 10, 'key': 'invoicevat'},
+                {'column': 11, 'key': 'invoicetotal'},
+                {'column': 12, 'key': 'podate'},
+                {'column': 13, 'key': 'povalue'},
+                {'column': 14, 'key': 'vatpct'},
+                {'column': 15, 'key': 'poref'},
+                {'column': 16, 'key': 'claimterms'},
+                {'column': 17, 'key': 'clientaddress'},
+                {'column': 18, 'key': 'clientphone'},
+                {'column': 19, 'key': 'clientfax'},
+                {'column': 20, 'key': 'clienturl'},
+                {'column': 21, 'key': 'contactname'},
+                {'column': 22, 'key': 'contactphone'},
             ],
-            'filter-column': 19,
+            'tabular_data': [
+                {
+                    'table_name': 'TableItem',
+                    'rows_for_data': (2, 11),
+                    'column_map': {
+                        'seq': 0,
+                        'item': 1,
+                        'uom': 2,
+                        'qty': 3,
+                        'unitprice': 4,
+                        'itemtotal': 5,
+                    },
+                },
+            ],
+            'filter-column': 23,
             'filter-value': 'yes',
         },
     },
-    'celloscope' : {
+    'celloscope': {
         'salary-enhancement-letter': {
             'columns': [
                 {'column': 0, 'key': 'seq'},
@@ -496,7 +516,7 @@ def acquire_data(org, source, data_connector):
 ''' process, transform, prepare data
 '''
 def process_data(org, data_processor, source_data):
-    se_data_processor_spec = DATA_PROCESSORS[org][data_processor]
+    data_processor_spec = DATA_PROCESSORS[org][data_processor]
 
     raw_data = source_data['data']
 
@@ -506,8 +526,8 @@ def process_data(org, data_processor, source_data):
     for row in raw_data:
         columns = {}
         # filter rows as specified
-        if row[se_data_processor_spec['filter-column']] == se_data_processor_spec['filter-value']:
-            for col_spec in se_data_processor_spec['columns']:
+        if row[data_processor_spec['filter-column']] == data_processor_spec['filter-value']:
+            for col_spec in data_processor_spec['columns']:
                 columns[col_spec['key']] = row[col_spec['column']]
 
             data.append(columns)
@@ -515,7 +535,7 @@ def process_data(org, data_processor, source_data):
     debug(f'{org} : processing data for [{data_processor}] ... done')
 
     # wrap the data in a processed-data object
-    processed_data = {'data': data}
+    processed_data = {'data_processor': data_processor_spec, 'data': data}
 
     return processed_data
 
@@ -523,10 +543,10 @@ def process_data(org, data_processor, source_data):
 ''' generate documents from data
 '''
 def output_data(org, output_processor, processed_data):
-    se_output_spec = DATA_SERIALIZERS[org][output_processor]
+    output_spec = DATA_SERIALIZERS[org][output_processor]
 
     data = processed_data['data']
-    tmp_dir = se_output_spec['output-dir'] + '/tmp'
+    tmp_dir = output_spec['output-dir'] + '/tmp'
 
     # crete directories in case they do not exist
     os.makedirs(tmp_dir, exist_ok=True)
@@ -537,7 +557,7 @@ def output_data(org, output_processor, processed_data):
     temp_files = []
     for item in data:
         # output-file-pattern may have variables/placeholders (enclosed in {}), let us identify those
-        file_name = se_output_spec['output-file-pattern']
+        file_name = output_spec['output-file-pattern']
         r1 = re.findall(r"{\w+}", file_name)
         for var in r1:
             key = var[1:-1]
@@ -547,28 +567,61 @@ def output_data(org, output_processor, processed_data):
         temp_files.append(temp_file_path)
 
         # generate the file
-        replace_fields(se_output_spec['input-template'], temp_file_path, item)
+        replace_fields(output_spec['input-template'], temp_file_path, item)
         debug(f'.. {org} : generating odt for {temp_file_path} ... done')
 
+        # here we may need to run another pass with odfpy to serialize tabular_data if there is any
+        if 'tabular_data' in processed_data['data_processor']:
+            output_tabular_data(temp_file_path, processed_data['data_processor']['tabular_data'])
+
         # generate pdf if instructed to do so
-        if se_output_spec['pdf-output-for-files']:
+        if output_spec['pdf-output-for-files']:
             debug(f'.. {org} : generating pdf from {temp_file_path}')
             generate_pdf(temp_file_path, tmp_dir)
             debug(f'.. {org} : generating pdf from {temp_file_path} ... done')
 
     # merge files if instructed to do so
-    if se_output_spec['merge-files']:
-        output_file_path = se_output_spec['output-dir'] + '/' + se_output_spec['merged-file-pattern'].format()
+    if output_spec['merge-files']:
+        output_file_path = output_spec['output-dir'] + '/' + output_spec['merged-file-pattern'].format()
         debug(f'{org} : merging odt files')
         merge_files(temp_files, output_file_path)
         debug(f'{org} : merging odt files ... done')
 
     # generate pdf if instructed to do so
-    if se_output_spec['pdf-output-for-merged-file']:
+    if output_spec['pdf-output-for-merged-file']:
         debug(f'{org} : generating pdf from merged odt')
-        generate_pdf(output_file_path, se_output_spec["output-dir"])
+        generate_pdf(output_file_path, output_spec["output-dir"])
         debug(f'{org} : generating pdf from merged odt ... done')
 
     debug(f'{org} : generating output for [{output_processor}] ... done')
 
     return
+
+
+'''modify document with tabular data
+'''
+def output_tabular_data(document_path, tabular_data_list):
+    # open the document
+    odt = load_document(document_path)
+
+    for tabular_date in tabular_data_list:
+        table_name = tabular_date["table_name"]
+
+        # get the table
+        tbl = get_table(odt, table_name)
+
+        if tbl is None:
+            warn(f'Table {table_name} not found')
+            # return
+
+        # get number of rows
+        # debug(f'Table {table_name} has {number_of_rows(tbl)} rows')
+
+        # put values in rows and columns
+        rows_not_populated = populate_table(tbl, tabular_date["rows_for_data"], tabular_date["column_map"], tabular_date["data_map"])
+
+        # remove unnecesary rows - from current_row_index to data_end_at_table_row
+        remove_rows(tbl, rows_not_populated)
+
+    # save odt
+    save_document(odt, document_path)

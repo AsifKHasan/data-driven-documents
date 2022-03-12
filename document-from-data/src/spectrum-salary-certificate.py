@@ -7,7 +7,7 @@ import num2words
 from helper.document_template import *
 
 
-''' generate documents from data
+''' post process document data
 '''
 def post_process_data(processed_data):
     for item in processed_data['data']:

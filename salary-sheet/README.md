@@ -1,17 +1,19 @@
-# sscl-tools/salary-advice
+# document-from-data/salary-advice
 
 ## Linux usage:
 ```
-CODE_BASE="/home/asif/projects/asif@github/code-snippets/sscl-tools/salary-advice"
+ORG="sscl"
+CODE_BASE="/home/asif/projects/asif@github/document-from-data/salary-advice/salary-advice"
 cd ${CODE_BASE}
 cd ./src
-./salary-advice-app.py
+./${ORG}-salary-advice-app.py
 ```
 
 ## Windows usage:
 ```
-set CODE_BASE="D:\projects\asif@github\code-snippets\sscl-tools\salary-advice"
+set ORG="sscl"
+set CODE_BASE="D:\projects\asif@github\document-from-data\salary-advice\salary-advice"
 cd %CODE_BASE%
 cd ./src
-python salary-advice-app.py
+python %ORG%-salary-advice-app.py
 ```

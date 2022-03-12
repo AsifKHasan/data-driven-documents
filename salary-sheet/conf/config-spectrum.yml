@@ -11,9 +11,9 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Jul21.
-  - Aug21.
-  - Sep21.
+  - Feb22.
+  - Mar22.
+  - Apr23.
   wings:
   - Acquisition
   - Delivery
@@ -22,6 +22,6 @@ selection:
   selected-account: '14111060000068'
   selected-filter: Software
   selected-mode: Bank
-  selected-month: Jul21.
-  selected-reference: 21/891
+  selected-month: Feb22.
+  selected-reference: 22/891
   selected-wing: Operations

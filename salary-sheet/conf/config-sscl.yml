@@ -6,8 +6,6 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Dec21.
-  - Jan22.
   - Feb22.
   - Mar22.
   - Apr22.
@@ -16,5 +14,5 @@ master-data:
 selection:
   selected-account: 4002-778881-000
   selected-mode: Bank
-  selected-month: Jan22.
+  selected-month: Feb22.
   selected-reference: 22/002

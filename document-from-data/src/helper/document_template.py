@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#/bin/env python3
 '''
     common template code for document generation
 '''
@@ -91,10 +91,20 @@ DATA_SOURCES = {
         },
     },
     'SSCL' : {
+        'payment-voucher': {
+            'sheet': 'SSCL__vouchers',
+            'worksheet': 'payment-vouchers',
+            'data-range': 'A3:N'
+        },
+        'receipt-voucher': {
+            'sheet': 'SSCL__vouchers',
+            'worksheet': 'receipt-vouchers',
+            'data-range': 'A3:M'
+        },
         'issued-invoice': {
             'sheet': 'SSCL__po-invoice',
             'worksheet': 'issued-invoice',
-            'data-range': 'A3:X'
+            'data-range': 'A3:Y'
         },
     },
     'celloscope' : {
@@ -110,248 +120,299 @@ DATA_PROCESSORS = {
     'spectrum': {
         'appointment-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'address'},
-                {'column': 4, 'key': 'effectivefrom'},
-                {'column': 5, 'key': 'designation'},
-                {'column': 6, 'key': 'grade'},
-                {'column': 7, 'key': 'wing'},
-                {'column': 8, 'key': 'unit'},
-                {'column': 9, 'key': 'supervisor'},
-                {'column': 10, 'key': 'remuneration'},
-                {'column': 11, 'key': 'site'},
-                {'column': 12, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'effectivefrom'},
+                {'column': 6, 'key': 'designation'},
+                {'column': 7, 'key': 'grade'},
+                {'column': 8, 'key': 'wing'},
+                {'column': 9, 'key': 'unit'},
+                {'column': 10, 'key': 'supervisor'},
+                {'column': 11, 'key': 'remuneration'},
+                {'column': 12, 'key': 'site'},
+                {'column': 13, 'key': 'letterdate'},
             ],
-            'filter-column': 13,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'experience-certificate': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'designation'},
-                {'column': 4, 'key': 'unit'},
-                {'column': 5, 'key': 'joiningdate'},
-                {'column': 6, 'key': 'separationdate'},
-                {'column': 7, 'key': 'employmenttype'},
-                {'column': 8, 'key': 'signatory'},
-                {'column': 9, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'designation'},
+                {'column': 5, 'key': 'unit'},
+                {'column': 6, 'key': 'joiningdate'},
+                {'column': 7, 'key': 'separationdate'},
+                {'column': 8, 'key': 'employmenttype'},
+                {'column': 9, 'key': 'signatory'},
+                {'column': 10, 'key': 'letterdate'},
             ],
-            'filter-column': 10,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'introduction-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'name'},
-                {'column': 2, 'key': 'birthdate'},
-                {'column': 3, 'key': 'citizenship'},
-                {'column': 4, 'key': 'presentaddress'},
-                {'column': 5, 'key': 'permanentaddress'},
-                {'column': 6, 'key': 'joiningdate'},
-                {'column': 7, 'key': 'designation'},
-                {'column': 8, 'key': 'employmenttype'},
-                {'column': 9, 'key': 'remuneration'},
-                {'column': 10, 'key': 'signatory'},
-                {'column': 11, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'name'},
+                {'column': 3, 'key': 'birthdate'},
+                {'column': 4, 'key': 'citizenship'},
+                {'column': 5, 'key': 'presentaddress'},
+                {'column': 6, 'key': 'permanentaddress'},
+                {'column': 7, 'key': 'joiningdate'},
+                {'column': 8, 'key': 'designation'},
+                {'column': 9, 'key': 'employmenttype'},
+                {'column': 10, 'key': 'remuneration'},
+                {'column': 11, 'key': 'signatory'},
+                {'column': 12, 'key': 'letterdate'},
             ],
-            'filter-column': 12,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'offer-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'address'},
-                {'column': 4, 'key': 'effectivefrom'},
-                {'column': 5, 'key': 'designation'},
-                {'column': 6, 'key': 'grade'},
-                {'column': 7, 'key': 'wing'},
-                {'column': 8, 'key': 'unit'},
-                {'column': 9, 'key': 'remuneration'},
-                {'column': 10, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'effectivefrom'},
+                {'column': 6, 'key': 'designation'},
+                {'column': 7, 'key': 'grade'},
+                {'column': 8, 'key': 'wing'},
+                {'column': 9, 'key': 'unit'},
+                {'column': 10, 'key': 'remuneration'},
+                {'column': 11, 'key': 'letterdate'},
             ],
-            'filter-column': 11,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'release-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'address'},
-                {'column': 4, 'key': 'effectivefrom'},
-                {'column': 5, 'key': 'designation'},
-                {'column': 6, 'key': 'unit'},
-                {'column': 7, 'key': 'signatory'},
-                {'column': 8, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'effectivefrom'},
+                {'column': 6, 'key': 'designation'},
+                {'column': 7, 'key': 'unit'},
+                {'column': 8, 'key': 'signatory'},
+                {'column': 9, 'key': 'letterdate'},
             ],
-            'filter-column': 9,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'salary-certificate': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'designation'},
-                {'column': 4, 'key': 'unit'},
-                {'column': 5, 'key': 'joiningdate'},
-                {'column': 6, 'key': 'employmenttype'},
-                {'column': 7, 'key': 'basic'},
-                {'column': 8, 'key': 'houserent'},
-                {'column': 9, 'key': 'medical'},
-                {'column': 10, 'key': 'conveyance'},
-                {'column': 11, 'key': 'gross'},
-                {'column': 12, 'key': 'tax'},
-                {'column': 13, 'key': 'net'},
-                {'column': 14, 'key': 'signatory'},
-                {'column': 15, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'designation'},
+                {'column': 5, 'key': 'unit'},
+                {'column': 6, 'key': 'joiningdate'},
+                {'column': 7, 'key': 'employmenttype'},
+                {'column': 8, 'key': 'basic'},
+                {'column': 9, 'key': 'houserent'},
+                {'column': 10, 'key': 'medical'},
+                {'column': 11, 'key': 'conveyance'},
+                {'column': 12, 'key': 'gross'},
+                {'column': 13, 'key': 'tax'},
+                {'column': 14, 'key': 'net'},
+                {'column': 15, 'key': 'signatory'},
+                {'column': 16, 'key': 'letterdate'},
             ],
-            'filter-column': 16,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'salary-enhancement-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'wing'},
-                {'column': 4, 'key': 'unit'},
-                {'column': 5, 'key': 'supervisor'},
-                {'column': 11, 'key': 'salary'},
-                {'column': 12, 'key': 'increment'},
-                {'column': 15, 'key': 'currentgrade'},
-                {'column': 16, 'key': 'promotion'},
-                {'column': 17, 'key': 'grade'},
-                {'column': 18, 'key': 'designation'},
-                {'column': 19, 'key': 'effectivefrom'},
-                {'column': 20, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'wing'},
+                {'column': 5, 'key': 'unit'},
+                {'column': 6, 'key': 'supervisor'},
+                {'column': 12, 'key': 'salary'},
+                {'column': 13, 'key': 'increment'},
+                {'column': 16, 'key': 'currentgrade'},
+                {'column': 17, 'key': 'promotion'},
+                {'column': 18, 'key': 'grade'},
+                {'column': 19, 'key': 'designation'},
+                {'column': 20, 'key': 'effectivefrom'},
+                {'column': 21, 'key': 'letterdate'},
             ],
-            'filter-column': 21,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'separation-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'address'},
-                {'column': 4, 'key': 'effectivefrom'},
-                {'column': 5, 'key': 'clause'},
-                {'column': 6, 'key': 'reasontext'},
-                {'column': 7, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'effectivefrom'},
+                {'column': 6, 'key': 'clause'},
+                {'column': 7, 'key': 'reasontext'},
+                {'column': 8, 'key': 'letterdate'},
             ],
-            'filter-column': 8,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'showcause-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'subject'},
-                {'column': 4, 'key': 'incidence'},
-                {'column': 5, 'key': 'submitto'},
-                {'column': 6, 'key': 'submissiondate'},
-                {'column': 7, 'key': 'signatory'},
-                {'column': 8, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'subject'},
+                {'column': 5, 'key': 'incidence'},
+                {'column': 6, 'key': 'submitto'},
+                {'column': 7, 'key': 'submissiondate'},
+                {'column': 8, 'key': 'signatory'},
+                {'column': 9, 'key': 'letterdate'},
             ],
-            'filter-column': 9,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'transfer-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'effectivefrom'},
-                {'column': 4, 'key': 'address'},
-                {'column': 7, 'key': 'fromunit'},
-                {'column': 8, 'key': 'tounit'},
-                {'column': 9, 'key': 'supervisor'},
-                {'column': 10, 'key': 'superdesignation'},
-                {'column': 11, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'effectivefrom'},
+                {'column': 5, 'key': 'address'},
+                {'column': 8, 'key': 'fromunit'},
+                {'column': 9, 'key': 'tounit'},
+                {'column': 10, 'key': 'supervisor'},
+                {'column': 11, 'key': 'superdesignation'},
+                {'column': 12, 'key': 'letterdate'},
             ],
-            'filter-column': 12,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
         'warning-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 3, 'key': 'subject'},
-                {'column': 4, 'key': 'incidence'},
-                {'column': 5, 'key': 'signatory'},
-                {'column': 6, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'subject'},
+                {'column': 5, 'key': 'incidence'},
+                {'column': 6, 'key': 'signatory'},
+                {'column': 7, 'key': 'letterdate'},
             ],
-            'filter-column': 7,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
     },
     'SSCL': {
-        'issued-invoice': {
+        'payment-voucher': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'invoicedate'},
-                {'column': 2, 'key': 'invoiceref'},
-                {'column': 3, 'key': 'clientname'},
-                {'column': 4, 'key': 'item'},
-                {'column': 5, 'key': 'uom'},
-                {'column': 6, 'key': 'qty'},
-                {'column': 7, 'key': 'unitprice'},
-                {'column': 8, 'key': 'itemtotal'},
-                {'column': 9, 'key': 'invoicenet'},
-                {'column': 10, 'key': 'invoicevat'},
-                {'column': 11, 'key': 'invoicetotal'},
-                {'column': 12, 'key': 'podate'},
-                {'column': 13, 'key': 'povalue'},
-                {'column': 14, 'key': 'vatpct'},
-                {'column': 15, 'key': 'poref'},
-                {'column': 16, 'key': 'claimterms'},
-                {'column': 17, 'key': 'clientaddress'},
-                {'column': 18, 'key': 'clientphone'},
-                {'column': 19, 'key': 'clientfax'},
-                {'column': 20, 'key': 'clienturl'},
-                {'column': 21, 'key': 'contactname'},
-                {'column': 22, 'key': 'contactphone'},
+                {'column': 3, 'key': 'voucherno'},
+                {'column': 4, 'key': 'voucherdate'},
+                {'column': 5, 'key': 'paymentto'},
+                {'column': 6, 'key': 'paymentmode'},
+                {'column': 7, 'key': 'paymentmodedetails'},
+                {'column': 12, 'key': 'vouchertotal'},
+                {'column': 13, 'key': 'being'},
             ],
-            'tabular_data': [
+            'filter-column': 0,
+            'filter-value': 'yes',
+            'tabular-data': [
                 {
-                    'table_name': 'TableItem',
-                    'rows_for_data': (2, 11),
-                    'column_map': {
-                        'seq': 0,
-                        'item': 1,
-                        'uom': 2,
-                        'qty': 3,
-                        'unitprice': 4,
-                        'itemtotal': 5,
-                    },
+                    'table-name': 'TableItem',
+                    'rows-for-data': (2, 11),
+                    'columns': [
+                        {'column': 2, 'key': 'seq', 'cell': 0},
+                        {'column': 8, 'key': 'accounthead', 'cell': 1},
+                        {'column': 9, 'key': 'mrno', 'cell': 2},
+                        {'column': 10, 'key': 'accountcode', 'cell': 3},
+                        {'column': 11, 'key': 'amount', 'cell': 4},
+                    ],
+                    'include-column': 1,
+                    'include-value': 'yes',
                 },
             ],
-            'filter-column': 23,
+        },
+        'receipt-voucher': {
+            'columns': [
+                {'column': 3, 'key': 'voucherno'},
+                {'column': 4, 'key': 'voucherdate'},
+                {'column': 5, 'key': 'receivedfrom'},
+                {'column': 6, 'key': 'receptionmode'},
+                {'column': 7, 'key': 'receptionmodedetails'},
+                {'column': 11, 'key': 'vouchertotal'},
+                {'column': 12, 'key': 'being'},
+            ],
+            'filter-column': 0,
             'filter-value': 'yes',
+            'tabular-data': [
+                {
+                    'table-name': 'TableItem',
+                    'rows-for-data': (2, 11),
+                    'columns': [
+                        {'column': 2, 'key': 'seq', 'cell': 0},
+                        {'column': 8, 'key': 'accounthead', 'cell': 1},
+                        {'column': 9, 'key': 'accountcode', 'cell': 2},
+                        {'column': 10, 'key': 'amount', 'cell': 3},
+                    ],
+                    'include-column': 1,
+                    'include-value': 'yes',
+                },
+            ],
+        },
+        'issued-invoice': {
+            'columns': [
+                {'column': 3, 'key': 'invoicedate'},
+                {'column': 4, 'key': 'invoiceref'},
+                {'column': 5, 'key': 'clientname'},
+                {'column': 11, 'key': 'invoicenet'},
+                {'column': 12, 'key': 'invoicevat'},
+                {'column': 13, 'key': 'invoicetotal'},
+                {'column': 14, 'key': 'podate'},
+                {'column': 15, 'key': 'povalue'},
+                {'column': 16, 'key': 'vatpct'},
+                {'column': 17, 'key': 'poref'},
+                {'column': 18, 'key': 'claimterms'},
+                {'column': 19, 'key': 'clientaddress'},
+                {'column': 20, 'key': 'clientphone'},
+                {'column': 21, 'key': 'clientfax'},
+                {'column': 22, 'key': 'clienturl'},
+                {'column': 23, 'key': 'contactname'},
+                {'column': 24, 'key': 'contactphone'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+            'tabular-data': [
+                {
+                    'table-name': 'TableItem',
+                    'rows-for-data': (2, 11),
+                    'columns': [
+                        {'column': 2, 'key': 'seq', 'cell': 0},
+                        {'column': 6, 'key': 'item', 'cell': 1},
+                        {'column': 7, 'key': 'uom', 'cell': 2},
+                        {'column': 8, 'key': 'qty', 'cell': 3},
+                        {'column': 9, 'key': 'unitprice', 'cell': 4},
+                        {'column': 10, 'key': 'itemtotal', 'cell': 5},
+                    ],
+                    'include-column': 1,
+                    'include-value': 'yes',
+                },
+            ],
         },
     },
     'celloscope': {
         'salary-enhancement-letter': {
             'columns': [
-                {'column': 0, 'key': 'seq'},
-                {'column': 1, 'key': 'salutation'},
-                {'column': 2, 'key': 'name'},
-                {'column': 7, 'key': 'designation'},
-                {'column': 16, 'key': 'salary'},
-                {'column': 17, 'key': 'increment'},
-                {'column': 19, 'key': 'effectivefrom'},
-                {'column': 20, 'key': 'letterdate'},
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'designation'},
+                {'column': 17, 'key': 'salary'},
+                {'column': 18, 'key': 'increment'},
+                {'column': 20, 'key': 'effectivefrom'},
+                {'column': 21, 'key': 'letterdate'},
             ],
-            'filter-column': 21,
+            'filter-column': 0,
             'filter-value': 'yes',
         },
     },
@@ -460,6 +521,24 @@ DATA_SERIALIZERS = {
         },
     },
     'SSCL' : {
+        'payment-voucher': {
+            'input-template': '../template/sscl/payment-voucher/SSCL__payment-voucher-template__2022.odt',
+            'output-dir': '../out/sscl/payment-voucher',
+            'output-file-pattern': 'sscl__payment-voucher__2022__{voucherno}__{voucherdate}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__payment-voucher__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
+        'receipt-voucher': {
+            'input-template': '../template/sscl/receipt-voucher/SSCL__receipt-voucher-template__2022.odt',
+            'output-dir': '../out/sscl/receipt-voucher',
+            'output-file-pattern': 'sscl__receipt-voucher__2022__{voucherno}__{voucherdate}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__receipt-voucher__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
         'issued-invoice': {
             'input-template': '../template/sscl/issued-invoice/SSCL__issued-invoice-template__2022.odt',
             'output-dir': '../out/sscl/issued-invoice',
@@ -521,6 +600,7 @@ def process_data(org, data_processor, source_data):
     raw_data = source_data['data']
 
     debug(f'{org} : processing data for [{data_processor}]')
+
     # the data is in a list (rows) of list (columns)
     data = []
     for row in raw_data:
@@ -528,14 +608,32 @@ def process_data(org, data_processor, source_data):
         # filter rows as specified
         if row[data_processor_spec['filter-column']] == data_processor_spec['filter-value']:
             for col_spec in data_processor_spec['columns']:
-                columns[col_spec['key']] = row[col_spec['column']]
+                if len(row) > col_spec['column']:
+                    columns[col_spec['key']] = row[col_spec['column']]
 
             data.append(columns)
+
+    # now process tabular data if there is any
+    if 'tabular-data' in data_processor_spec:
+        # tabular_data_specs is a list
+        for tabular_data_spec in data_processor_spec['tabular-data']:
+            tabular_data = []
+            for row in raw_data:
+                columns = {}
+                # filter rows as specified
+                if row[tabular_data_spec['include-column']] == tabular_data_spec['include-value']:
+                    for col_spec in tabular_data_spec['columns']:
+                        columns[col_spec['key']] = row[col_spec['column']]
+
+                    tabular_data.append(columns)
+
+            tabular_data_spec['data-map'] = tabular_data
+
 
     debug(f'{org} : processing data for [{data_processor}] ... done')
 
     # wrap the data in a processed-data object
-    processed_data = {'data_processor': data_processor_spec, 'data': data}
+    processed_data = {'data-processor': data_processor_spec, 'data': data}
 
     return processed_data
 
@@ -571,8 +669,8 @@ def output_data(org, output_processor, processed_data):
         debug(f'.. {org} : generating odt for {temp_file_path} ... done')
 
         # here we may need to run another pass with odfpy to serialize tabular_data if there is any
-        if 'tabular_data' in processed_data['data_processor']:
-            output_tabular_data(temp_file_path, processed_data['data_processor']['tabular_data'])
+        if 'tabular-data' in processed_data['data-processor']:
+            output_tabular_data(temp_file_path, processed_data['data-processor']['tabular-data'])
 
         # generate pdf if instructed to do so
         if output_spec['pdf-output-for-files']:
@@ -600,12 +698,12 @@ def output_data(org, output_processor, processed_data):
 
 '''modify document with tabular data
 '''
-def output_tabular_data(document_path, tabular_data_list):
+def output_tabular_data(document_path, tabular_data_specs):
     # open the document
     odt = load_document(document_path)
 
-    for tabular_date in tabular_data_list:
-        table_name = tabular_date["table_name"]
+    for tabular_data_spec in tabular_data_specs:
+        table_name = tabular_data_spec["table-name"]
 
         # get the table
         tbl = get_table(odt, table_name)
@@ -618,7 +716,7 @@ def output_tabular_data(document_path, tabular_data_list):
         # debug(f'Table {table_name} has {number_of_rows(tbl)} rows')
 
         # put values in rows and columns
-        rows_not_populated = populate_table(tbl, tabular_date["rows_for_data"], tabular_date["column_map"], tabular_date["data_map"])
+        rows_not_populated = populate_table(tbl, tabular_data_spec["rows-for-data"], tabular_data_spec["columns"], tabular_data_spec["data-map"])
 
         # remove unnecesary rows - from current_row_index to data_end_at_table_row
         remove_rows(tbl, rows_not_populated)

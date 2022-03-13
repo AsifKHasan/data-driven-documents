@@ -42,7 +42,7 @@ def number_of_rows(tbl):
 
 ''' populate table with data
 '''
-def populate_table(tbl, rows_for_data, column_map, data_map):
+def populate_table(tbl, rows_for_data, columns, data_map):
     table_name = tbl.getAttribute('name')
     table_rows = tbl.getElementsByType(table.TableRow)
     data_start_at_table_row = rows_for_data[0]
@@ -61,12 +61,16 @@ def populate_table(tbl, rows_for_data, column_map, data_map):
         # each data_item is a dict
         for k, v in data_item.items():
             # from the key we know in which column the value to put
-            column_index = column_map[k]
-            cell = row_cells[column_index]
+            for column in columns:
+                if column['key'] == k:
+                    column_index = column['cell']
 
-            # get the first para of the cell
-            paras = cell.getElementsByType(text.P)
-            paras[0].addText(v)
+                    cell = row_cells[column_index]
+
+                    # get the first para of the cell
+                    paras = cell.getElementsByType(text.P)
+                    paras[0].addText(v)
+                    pass
 
         current_row_index = current_row_index + 1
 

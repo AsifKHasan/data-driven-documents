@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-    generate templated issued invoice from data
+    generate templated payment voucher from data
 '''
 
 import num2words
@@ -10,7 +10,8 @@ from helper.document_template import *
 '''
 def post_process_data(processed_data):
     for item in processed_data['data']:
-        item['totalinwords'] = num2words.num2words(item['invoicetotal'].replace(',', ''), to='currency', lang='en_IN').replace('euro', 'taka').replace('cents', 'paisa')
+        pprint(item)
+        item['totalinwords'] = num2words.num2words(item['vouchertotal'].replace(',', ''), to='currency', lang='en_IN').replace('euro', 'taka').replace('cents', 'paisa')
 
     return processed_data
 
@@ -18,7 +19,7 @@ def post_process_data(processed_data):
 if __name__ == '__main__':
     org = 'SSCL'
     provider = 'google'
-    document = 'issued-invoice'
+    document = 'payment-voucher'
 
     # get the appropriate data-connector
     data_connector = authenticate_to_data_service(org, provider)

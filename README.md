@@ -37,8 +37,9 @@
 1. get a file named *credential.json* from me and paste/copy to D:\projects\data-driven-documents\salary-sheet\conf
 
 ## type of documents for document-from-data
-The following document types are available
+The following document types are available for Spectrum
 a. appointment-letter
+b. confirmation-letter
 b. experience-certificate
 c. introduction-letter
 d. offer-letter
@@ -50,6 +51,12 @@ i. showcause-letter
 j. transfer-letter
 k. warning-letter
 
+The following document types are available for Spectrum
+a. confirmation-letter
+b. issued-po
+c. issued-invoice
+d. payment-voucher
+e. receipt-voucher
 
 # Running scripts/programs
 ## document-from-data
@@ -59,6 +66,6 @@ k. warning-letter
 3. if everything goes well you will get individual letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\DOC\tmp and combined letters in D:\projects\data-driven-documents\document-from-data\out\spectrum\DOC
 
 ## salary-sheet
-1. cd to D:\projects\data-driven-documents\salary-sheet\src
-2a. if working for Spectrum run command ```python spectrum-salary-advice-app.py```
-2b. if working for SSCL run command ```python sscl-salary-advice-app.py```
+1. cd to D:\projects\data-driven-documents\salary-sheet
+2a. if working for Spectrum run command ```spectrum-salary-advice.bat```
+2b. if working for SSCL run command ```sscl-salary-advice.bat```

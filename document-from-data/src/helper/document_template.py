@@ -39,6 +39,11 @@ DATA_SOURCES = {
             'worksheet': 'appointment',
             'data-range': 'A3:N'
         },
+        'confirmation-letter': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'confirmation',
+            'data-range': 'A3:N'
+        },
         'experience-certificate': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'experience-certificate',
@@ -47,6 +52,11 @@ DATA_SOURCES = {
         'introduction-letter': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'introduction',
+            'data-range': 'A3:M'
+        },
+        'internship-letter': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'internship',
             'data-range': 'A3:M'
         },
         'offer-letter': {
@@ -137,6 +147,25 @@ DATA_PROCESSORS = {
             'filter-column': 0,
             'filter-value': 'yes',
         },
+        'confirmation-letter': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'wing'},
+                {'column': 5, 'key': 'unit'},
+                {'column': 6, 'key': 'grade'},
+                {'column': 7, 'key': 'designation'},
+                {'column': 8, 'key': 'effectivefrom'},
+                {'column': 9, 'key': 'raise'},
+                {'column': 10, 'key': 'remuneration'},
+                {'column': 11, 'key': 'increment'},
+                {'column': 12, 'key': 'supervisor'},
+                {'column': 13, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
         'experience-certificate': {
             'columns': [
                 {'column': 1, 'key': 'seq'},
@@ -165,6 +194,24 @@ DATA_PROCESSORS = {
                 {'column': 8, 'key': 'designation'},
                 {'column': 9, 'key': 'employmenttype'},
                 {'column': 10, 'key': 'remuneration'},
+                {'column': 11, 'key': 'signatory'},
+                {'column': 12, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
+        'internship-letter': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'position'},
+                {'column': 6, 'key': 'months'},
+                {'column': 7, 'key': 'startdate'},
+                {'column': 8, 'key': 'enddate'},
+                {'column': 9, 'key': 'remuneration'},
+                {'column': 10, 'key': 'exitcriteria'},
                 {'column': 11, 'key': 'signatory'},
                 {'column': 12, 'key': 'letterdate'},
             ],
@@ -429,6 +476,15 @@ DATA_SERIALIZERS = {
             'merged-file-pattern': 'spectrum__appointment-letter__2022.odt',
             'pdf-output-for-merged-file': False,
         },
+        'confirmation-letter': {
+            'input-template': '../template/spectrum/confirmation-letter/HR__confirmation-letter-template__2022.odt',
+            'output-dir': '../out/spectrum/confirmation-letter',
+            'output-file-pattern': 'spectrum__confirmation-letter__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': True,
+            'merged-file-pattern': 'spectrum__confirmation-letter__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
         'experience-certificate': {
             'input-template': '../template/spectrum/experience-certificate/HR__experience-certificate-template__2022.odt',
             'output-dir': '../out/spectrum/experience-certificate',
@@ -445,6 +501,15 @@ DATA_SERIALIZERS = {
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__introduction-letter__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
+        'internship-letter': {
+            'input-template': '../template/spectrum/internship-letter/HR__internship-letter-template__2022.odt',
+            'output-dir': '../out/spectrum/internship-letter',
+            'output-file-pattern': 'spectrum__internship-letter__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': True,
+            'merged-file-pattern': 'spectrum__internship-letter__2022.odt',
             'pdf-output-for-merged-file': True,
         },
         'offer-letter': {

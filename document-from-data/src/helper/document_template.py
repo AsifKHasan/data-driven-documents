@@ -102,19 +102,29 @@ DATA_SOURCES = {
     },
     'SSCL' : {
         'payment-voucher': {
-            'sheet': 'SSCL__vouchers',
-            'worksheet': 'payment-vouchers',
+            'sheet': 'SSCL__voucher-form',
+            'worksheet': 'payment-voucher',
             'data-range': 'A3:N'
         },
         'receipt-voucher': {
-            'sheet': 'SSCL__vouchers',
-            'worksheet': 'receipt-vouchers',
+            'sheet': 'SSCL__voucher-form',
+            'worksheet': 'receipt-voucher',
             'data-range': 'A3:M'
+        },
+        'tr6-form': {
+            'sheet': 'SSCL__voucher-form',
+            'worksheet': 'tr6-form',
+            'data-range': 'A3:O'
         },
         'issued-invoice': {
             'sheet': 'SSCL__po-invoice',
             'worksheet': 'issued-invoice',
             'data-range': 'A3:Y'
+        },
+        'issued-po': {
+            'sheet': 'SSCL__po-invoice',
+            'worksheet': 'issued-po',
+            'data-range': 'A3:AH'
         },
     },
     'celloscope' : {
@@ -407,6 +417,24 @@ DATA_PROCESSORS = {
                 },
             ],
         },
+        'tr6-form': {
+            'columns': [
+                {'column': 3, 'key': 'challanno'},
+                {'column': 4, 'key': 'challandate'},
+                {'column': 5, 'key': 'challanname'},
+                {'column': 6, 'key': 'beneficiaryname'},
+                {'column': 7, 'key': 'beneficiaryaddress'},
+                {'column': 8, 'key': 'purposedetails'},
+                {'column': 9, 'key': 'instrumentdetails'},
+                {'column': 10, 'key': 'taka'},
+                {'column': 11, 'key': 'paisa'},
+                {'column': 12, 'key': 'taxofficedetails'},
+                {'column': 13, 'key': 'totaltaka'},
+                {'column': 14, 'key': 'totalpaisa'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
         'issued-invoice': {
             'columns': [
                 {'column': 3, 'key': 'invoicedate'},
@@ -440,6 +468,54 @@ DATA_PROCESSORS = {
                         {'column': 8, 'key': 'qty', 'cell': 3},
                         {'column': 9, 'key': 'unitprice', 'cell': 4},
                         {'column': 10, 'key': 'itemtotal', 'cell': 5},
+                    ],
+                    'include-column': 1,
+                    'include-value': 'yes',
+                },
+            ],
+        },
+        'issued-po': {
+            'columns': [
+                {'column': 3, 'key': 'podate'},
+                {'column': 4, 'key': 'poref'},
+                {'column': 5, 'key': 'vendorname'},
+                {'column': 13, 'key': 'ponet'},
+                {'column': 14, 'key': 'aitpct'},
+                {'column': 15, 'key': 'vatpct'},
+                {'column': 16, 'key': 'povat'},
+                {'column': 17, 'key': 'pototal'},
+                {'column': 18, 'key': 'deliverystartdate'},
+                {'column': 19, 'key': 'deliveryenddate'},
+                {'column': 20, 'key': 'deliverto'},
+                {'column': 21, 'key': 'delivertoproject'},
+                {'column': 22, 'key': 'delivertoproduct'},
+                {'column': 23, 'key': 'delivertopm'},
+                {'column': 24, 'key': 'pmphone'},
+                {'column': 25, 'key': 'pmemail'},
+                {'column': 26, 'key': 'partialdelivery'},
+                {'column': 27, 'key': 'offerref'},
+                {'column': 28, 'key': 'vendoraddress'},
+                {'column': 29, 'key': 'vendorbin'},
+                {'column': 30, 'key': 'vendortin'},
+                {'column': 31, 'key': 'vendorcontactname'},
+                {'column': 32, 'key': 'vendorcontactphone'},
+                {'column': 33, 'key': 'vendorcontactemail'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+            'tabular-data': [
+                {
+                    'table-name': 'TableItem',
+                    'rows-for-data': (1, 4),
+                    'columns': [
+                        {'column': 2, 'key': 'seq', 'cell': 0},
+                        {'column': 6, 'key': 'item', 'cell': 1},
+                        {'column': 7, 'key': 'location', 'cell': 2},
+                        {'column': 8, 'key': 'date', 'cell': 3},
+                        {'column': 9, 'key': 'uom', 'cell': 4},
+                        {'column': 10, 'key': 'qty', 'cell': 5},
+                        {'column': 11, 'key': 'unitprice', 'cell': 6},
+                        {'column': 12, 'key': 'itemtotal', 'cell': 7},
                     ],
                     'include-column': 1,
                     'include-value': 'yes',
@@ -604,6 +680,15 @@ DATA_SERIALIZERS = {
             'merged-file-pattern': 'sscl__receipt-voucher__2022.odt',
             'pdf-output-for-merged-file': False,
         },
+        'tr6-form': {
+            'input-template': '../template/sscl/tr6-form/SSCL__tr6-form-template__2022.odt',
+            'output-dir': '../out/sscl/tr6-form',
+            'output-file-pattern': 'sscl__tr6-form__2022__{challandate}__{challanname}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': True,
+            'merged-file-pattern': 'sscl__tr6-form__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
         'issued-invoice': {
             'input-template': '../template/sscl/issued-invoice/SSCL__issued-invoice-template__2022.odt',
             'output-dir': '../out/sscl/issued-invoice',
@@ -611,6 +696,15 @@ DATA_SERIALIZERS = {
             'pdf-output-for-files': True,
             'merge-files': False,
             'merged-file-pattern': 'sscl__issued-invoice__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
+        'issued-po': {
+            'input-template': '../template/sscl/issued-po/SSCL__issued-po-template__2022.odt',
+            'output-dir': '../out/sscl/issued-po',
+            'output-file-pattern': 'sscl__issued-po__2022__{poref}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__issued-po__2022.odt',
             'pdf-output-for-merged-file': False,
         },
     },

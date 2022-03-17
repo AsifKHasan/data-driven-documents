@@ -10,7 +10,6 @@ from helper.document_template import *
 '''
 def post_process_data(processed_data):
     for item in processed_data['data']:
-        pprint(item)
         item['totalinwords'] = num2words.num2words(item['vouchertotal'].replace(',', ''), to='currency', lang='en_IN').replace('euro', 'taka').replace('cents', 'paisa')
 
     return processed_data

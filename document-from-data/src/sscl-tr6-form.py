@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-    generate templated receipt voucher from data
+    generate templated TR6 form from data
 '''
 
 import num2words
@@ -10,7 +10,12 @@ from helper.document_template import *
 '''
 def post_process_data(processed_data):
     for item in processed_data['data']:
-        item['totalinwords'] = num2words.num2words(item['vouchertotal'].replace(',', ''), to='currency', lang='en_IN').replace('euro', 'taka').replace('cents', 'paisa')
+        if item['totalpaisa'] == '-':
+            totalamount = item['totaltaka'].replace(',', '')
+        else:
+            totalamount = item['totaltaka'].replace(',', '') + '.' + item['totalpaisa'].replace(',', '')
+
+        item['totalinwords'] = num2words.num2words(totalamount, to='currency', lang='en_IN').replace('euro', 'taka').replace('cents', 'paisa')
 
     return processed_data
 
@@ -18,7 +23,7 @@ def post_process_data(processed_data):
 if __name__ == '__main__':
     org = 'SSCL'
     provider = 'google'
-    document = 'receipt-voucher'
+    document = 'tr6-form'
 
     # get the appropriate data-connector
     data_connector = authenticate_to_data_service(org, provider)

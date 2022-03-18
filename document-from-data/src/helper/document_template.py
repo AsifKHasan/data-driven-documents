@@ -111,10 +111,25 @@ DATA_SOURCES = {
             'worksheet': 'receipt-voucher',
             'data-range': 'A3:M'
         },
+        'claim-adjustment': {
+            'sheet': 'SSCL__voucher-form',
+            'worksheet': 'claim-adjustment',
+            'data-range': 'A3:X'
+        },
+        'advance-requisition': {
+            'sheet': 'SSCL__voucher-form',
+            'worksheet': 'advance-requisition',
+            'data-range': 'A3:T'
+        },
         'tr6-form': {
             'sheet': 'SSCL__voucher-form',
             'worksheet': 'tr6-form',
             'data-range': 'A3:O'
+        },
+        'vat-ait-supporting': {
+            'sheet': 'SSCL__voucher-form',
+            'worksheet': 'vat-ait-supporting',
+            'data-range': 'A3:P'
         },
         'issued-invoice': {
             'sheet': 'SSCL__po-invoice',
@@ -417,6 +432,78 @@ DATA_PROCESSORS = {
                 },
             ],
         },
+        'claim-adjustment': {
+            'columns': [
+                {'column': 3, 'key': 'claimref'},
+                {'column': 4, 'key': 'claimdate'},
+                {'column': 5, 'key': 'claimdescription'},
+                {'column': 6, 'key': 'project'},
+                {'column': 7, 'key': 'claimant'},
+                {'column': 14, 'key': 'claimtotal'},
+                {'column': 15, 'key': 'advancedamount'},
+                {'column': 16, 'key': 'outstanding'},
+                {'column': 17, 'key': 'wing'},
+                {'column': 18, 'key': 'unit'},
+                {'column': 19, 'key': 'phonenumber'},
+                {'column': 20, 'key': 'email'},
+                {'column': 21, 'key': 'depositbank'},
+                {'column': 22, 'key': 'depositdate'},
+                {'column': 23, 'key': 'depositamount'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+            'tabular-data': [
+                {
+                    'table-name': 'TableItem',
+                    'rows-for-data': (1, 10),
+                    'columns': [
+                        {'column': 2, 'key': 'seq', 'cell': 0},
+                        {'column': 8, 'key': 'head', 'cell': 1},
+                        {'column': 9, 'key': 'subhead', 'cell': 2},
+                        {'column': 10, 'key': 'partuculars', 'cell': 3},
+                        {'column': 11, 'key': 'uom', 'cell': 4},
+                        {'column': 12, 'key': 'qty', 'cell': 5},
+                        {'column': 13, 'key': 'amount', 'cell': 6},
+                    ],
+                    'include-column': 1,
+                    'include-value': 'yes',
+                },
+            ],
+        },
+        'advance-requisition': {
+            'columns': [
+                {'column': 3, 'key': 'claimref'},
+                {'column': 4, 'key': 'claimdate'},
+                {'column': 5, 'key': 'claimdescription'},
+                {'column': 6, 'key': 'project'},
+                {'column': 7, 'key': 'claimant'},
+                {'column': 12, 'key': 'claimtotal'},
+                {'column': 13, 'key': 'advancedamount'},
+                {'column': 14, 'key': 'paymentmode'},
+                {'column': 15, 'key': 'paymentmodedetails'},
+                {'column': 16, 'key': 'wing'},
+                {'column': 17, 'key': 'unit'},
+                {'column': 18, 'key': 'phonenumber'},
+                {'column': 19, 'key': 'email'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+            'tabular-data': [
+                {
+                    'table-name': 'TableItem',
+                    'rows-for-data': (1, 10),
+                    'columns': [
+                        {'column': 2, 'key': 'seq', 'cell': 0},
+                        {'column': 8, 'key': 'partuculars', 'cell': 1},
+                        {'column': 9, 'key': 'uom', 'cell': 2},
+                        {'column': 10, 'key': 'qty', 'cell': 3},
+                        {'column': 11, 'key': 'amount', 'cell': 4},
+                    ],
+                    'include-column': 1,
+                    'include-value': 'yes',
+                },
+            ],
+        },
         'tr6-form': {
             'columns': [
                 {'column': 3, 'key': 'challanno'},
@@ -434,6 +521,36 @@ DATA_PROCESSORS = {
             ],
             'filter-column': 0,
             'filter-value': 'yes',
+        },
+        'vat-ait-supporting': {
+            'columns': [
+                {'column': 3, 'key': 'documentname'},
+                {'column': 4, 'key': 'documentdate'},
+                {'column': 5, 'key': 'challancode'},
+                {'column': 12, 'key': 'totalpayable'},
+                {'column': 13, 'key': 'totalvat'},
+                {'column': 14, 'key': 'totalait'},
+                {'column': 15, 'key': 'totalnetpayable'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+            'tabular-data': [
+                {
+                    'table-name': 'TableItem',
+                    'rows-for-data': (1, 10),
+                    'columns': [
+                        {'column': 2, 'key': 'seq', 'cell': 0},
+                        {'column': 6, 'key': 'head', 'cell': 1},
+                        {'column': 7, 'key': 'item', 'cell': 2},
+                        {'column': 8, 'key': 'payable', 'cell': 3},
+                        {'column': 9, 'key': 'vat', 'cell': 4},
+                        {'column': 10, 'key': 'ait', 'cell': 5},
+                        {'column': 11, 'key': 'netpayable', 'cell': 6},
+                    ],
+                    'include-column': 1,
+                    'include-value': 'yes',
+                },
+            ],
         },
         'issued-invoice': {
             'columns': [
@@ -680,6 +797,24 @@ DATA_SERIALIZERS = {
             'merged-file-pattern': 'sscl__receipt-voucher__2022.odt',
             'pdf-output-for-merged-file': False,
         },
+        'claim-adjustment': {
+            'input-template': '../template/sscl/claim-adjustment/SSCL__claim-adjustment-template__2022.odt',
+            'output-dir': '../out/sscl/claim-adjustment',
+            'output-file-pattern': 'sscl__claim-adjustment__2022__{claimref}__{claimdate}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__claim-adjustment__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
+        'advance-requisition': {
+            'input-template': '../template/sscl/advance-requisition/SSCL__advance-requisition-template__2022.odt',
+            'output-dir': '../out/sscl/advance-requisition',
+            'output-file-pattern': 'sscl__advance-requisition__2022__{claimref}__{claimdate}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__advance-requisition__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
         'tr6-form': {
             'input-template': '../template/sscl/tr6-form/SSCL__tr6-form-template__2022.odt',
             'output-dir': '../out/sscl/tr6-form',
@@ -688,6 +823,15 @@ DATA_SERIALIZERS = {
             'merge-files': True,
             'merged-file-pattern': 'sscl__tr6-form__2022.odt',
             'pdf-output-for-merged-file': True,
+        },
+        'vat-ait-supporting': {
+            'input-template': '../template/sscl/vat-ait-supporting/SSCL__vat-ait-supporting-template__2022.odt',
+            'output-dir': '../out/sscl/vat-ait-supporting',
+            'output-file-pattern': 'sscl__vat-ait-supporting__2022__{documentdate}__{documentname}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__vat-ait-supporting__2022.odt',
+            'pdf-output-for-merged-file': False,
         },
         'issued-invoice': {
             'input-template': '../template/sscl/issued-invoice/SSCL__issued-invoice-template__2022.odt',

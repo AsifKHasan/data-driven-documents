@@ -577,7 +577,7 @@ DATA_PROCESSORS = {
             'tabular-data': [
                 {
                     'table-name': 'TableItem',
-                    'rows-for-data': (2, 11),
+                    'rows-for-data': (1, 10),
                     'columns': [
                         {'column': 2, 'key': 'seq', 'cell': 0},
                         {'column': 6, 'key': 'item', 'cell': 1},

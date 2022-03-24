@@ -1,4 +1,4 @@
-advance-requisitionadvance-requisition#!/usr/bin/env python3
+#!/usr/bin/env python3
 '''
     generate templated claim adjustment from data
 '''

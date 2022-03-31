@@ -59,6 +59,11 @@ DATA_SOURCES = {
             'worksheet': 'experience-certificate',
             'data-range': 'A3:K'
         },
+        'internship-certificate': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'internship-certificate',
+            'data-range': 'A3:K'
+        },
         'introduction-letter': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'introduction',
@@ -111,6 +116,11 @@ DATA_SOURCES = {
         },
     },
     'SSCL' : {
+        'money-receipt': {
+            'sheet': 'SSCL__voucher-form',
+            'worksheet': 'money-receipt',
+            'data-range': 'A3:K'
+        },
         'payment-voucher': {
             'sheet': 'SSCL__voucher-form',
             'worksheet': 'payment-voucher',
@@ -262,6 +272,22 @@ DATA_PROCESSORS = {
                 {'column': 6, 'key': 'joiningdate'},
                 {'column': 7, 'key': 'separationdate'},
                 {'column': 8, 'key': 'employmenttype'},
+                {'column': 9, 'key': 'signatory'},
+                {'column': 10, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
+        'internship-certificate': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'unit'},
+                {'column': 5, 'key': 'fromdate'},
+                {'column': 6, 'key': 'todate'},
+                {'column': 7, 'key': 'duration'},
+                {'column': 8, 'key': 'workarea'},
                 {'column': 9, 'key': 'signatory'},
                 {'column': 10, 'key': 'letterdate'},
             ],
@@ -438,6 +464,22 @@ DATA_PROCESSORS = {
         },
     },
     'SSCL': {
+        'money-receipt': {
+            'columns': [
+                {'column': 1, 'key': 'receiptdate'},
+                {'column': 2, 'key': 'receiptno'},
+                {'column': 3, 'key': 'receivedfrom'},
+                {'column': 4, 'key': 'amount'},
+                {'column': 5, 'key': 'purpose'},
+                {'column': 6, 'key': 'invoiceno'},
+                {'column': 7, 'key': 'bankname'},
+                {'column': 8, 'key': 'chequenumber'},
+                {'column': 9, 'key': 'chequedate'},
+                {'column': 10, 'key': 'receptionmode'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
         'payment-voucher': {
             'columns': [
                 {'column': 3, 'key': 'voucherno'},
@@ -766,6 +808,15 @@ DATA_SERIALIZERS = {
             'merged-file-pattern': 'spectrum__experience-certificate__2022.odt',
             'pdf-output-for-merged-file': True,
         },
+        'internship-certificate': {
+            'input-template': '../template/spectrum/internship-certificate/HR__internship-certificate-template__2022.odt',
+            'output-dir': '../out/spectrum/internship-certificate',
+            'output-file-pattern': 'spectrum__internship-certificate__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'spectrum__internship-certificate__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
         'introduction-letter': {
             'input-template': '../template/spectrum/introduction-letter/HR__introduction-letter-template__2022.odt',
             'output-dir': '../out/spectrum/introduction-letter',
@@ -858,6 +909,15 @@ DATA_SERIALIZERS = {
         },
     },
     'SSCL' : {
+        'money-receipt': {
+            'input-template': '../template/sscl/money-receipt/SSCL__money-receipt-template__2022.odt',
+            'output-dir': '../out/sscl/money-receipt',
+            'output-file-pattern': 'sscl__money-receipt__2022__{receiptno}__{receivedfrom}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__money-receipt__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
         'payment-voucher': {
             'input-template': '../template/sscl/payment-voucher/SSCL__payment-voucher-template__2022.odt',
             'output-dir': '../out/sscl/payment-voucher',
@@ -1067,11 +1127,11 @@ def output_data(org, output_processor, processed_data):
         merge_files(temp_files, output_file_path)
         debug(f'{org} : merging odt files ... done')
 
-    # generate pdf if instructed to do so
-    if output_spec['pdf-output-for-merged-file']:
-        debug(f'{org} : generating pdf from merged odt')
-        generate_pdf(output_file_path, output_spec["output-dir"])
-        debug(f'{org} : generating pdf from merged odt ... done')
+        # generate pdf if instructed to do so
+        if output_spec['pdf-output-for-merged-file']:
+            debug(f'{org} : generating pdf from merged odt')
+            generate_pdf(output_file_path, output_spec["output-dir"])
+            debug(f'{org} : generating pdf from merged odt ... done')
 
     debug(f'{org} : generating output for [{output_processor}] ... done')
 

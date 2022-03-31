@@ -44,6 +44,11 @@ DATA_SOURCES = {
             'worksheet': 'confirmation',
             'data-range': 'A3:N'
         },
+        'contractual-appointment': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'contractual-appointment',
+            'data-range': 'A3:N'
+        },
         'experience-certificate': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'experience-certificate',
@@ -186,6 +191,25 @@ DATA_PROCESSORS = {
                 {'column': 10, 'key': 'remuneration'},
                 {'column': 11, 'key': 'increment'},
                 {'column': 12, 'key': 'supervisor'},
+                {'column': 13, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
+        'contractual-appointment': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'effectivefrom'},
+                {'column': 6, 'key': 'validto'},
+                {'column': 7, 'key': 'designation'},
+                {'column': 8, 'key': 'wing'},
+                {'column': 9, 'key': 'unit'},
+                {'column': 10, 'key': 'supervisor'},
+                {'column': 11, 'key': 'remuneration'},
+                {'column': 12, 'key': 'site'},
                 {'column': 13, 'key': 'letterdate'},
             ],
             'filter-column': 0,
@@ -677,6 +701,15 @@ DATA_SERIALIZERS = {
             'merge-files': True,
             'merged-file-pattern': 'spectrum__confirmation-letter__2022.odt',
             'pdf-output-for-merged-file': True,
+        },
+        'contractual-appointment': {
+            'input-template': '../template/spectrum/contractual-appointment/HR__contractual-appointment-template__2022.odt',
+            'output-dir': '../out/spectrum/contractual-appointment',
+            'output-file-pattern': 'spectrum__contractual-appointment__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'spectrum__contractual-appointment__2022.odt',
+            'pdf-output-for-merged-file': False,
         },
         'experience-certificate': {
             'input-template': '../template/spectrum/experience-certificate/HR__experience-certificate-template__2022.odt',

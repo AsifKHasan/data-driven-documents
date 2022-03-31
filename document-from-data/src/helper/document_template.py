@@ -44,6 +44,11 @@ DATA_SOURCES = {
             'worksheet': 'confirmation',
             'data-range': 'A3:N'
         },
+        'contract-renewal': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'contract-renewal',
+            'data-range': 'A3:V'
+        },
         'contractual-appointment': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'contractual-appointment',
@@ -196,6 +201,34 @@ DATA_PROCESSORS = {
             'filter-column': 0,
             'filter-value': 'yes',
         },
+        'contract-renewal': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'appointmentref'},
+                {'column': 6, 'key': 'appointmentdate'},
+                {'column': 7, 'key': 'effectivefrom'},
+                {'column': 8, 'key': 'validto'},
+                {'column': 9, 'key': 'duration'},
+                {'column': 10, 'key': 'designation'},
+                {'column': 11, 'key': 'wing'},
+                {'column': 12, 'key': 'unit'},
+                {'column': 13, 'key': 'project'},
+                {'column': 14, 'key': 'supervisor'},
+                {'column': 15, 'key': 'remuneration'},
+                {'column': 16, 'key': 'currency'},
+                {'column': 17, 'key': 'cycle'},
+                {'column': 18, 'key': 'site'},
+                {'column': 19, 'key': 'clause12'},
+                {'column': 20, 'key': 'clause13'},
+                {'column': 21, 'key': 'clause14'},
+                {'column': 22, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
         'contractual-appointment': {
             'columns': [
                 {'column': 1, 'key': 'seq'},
@@ -203,8 +236,8 @@ DATA_PROCESSORS = {
                 {'column': 3, 'key': 'name'},
                 {'column': 4, 'key': 'address'},
                 {'column': 5, 'key': 'effectivefrom'},
-                {'column': 6, 'key': 'designation'},
-                {'column': 7, 'key': 'grade'},
+                {'column': 6, 'key': 'validto'},
+                {'column': 7, 'key': 'designation'},
                 {'column': 8, 'key': 'wing'},
                 {'column': 9, 'key': 'unit'},
                 {'column': 10, 'key': 'project'},
@@ -705,6 +738,15 @@ DATA_SERIALIZERS = {
             'merge-files': True,
             'merged-file-pattern': 'spectrum__confirmation-letter__2022.odt',
             'pdf-output-for-merged-file': True,
+        },
+        'contract-renewal': {
+            'input-template': '../template/spectrum/contract-renewal/HR__contract-renewal-template__2022.odt',
+            'output-dir': '../out/spectrum/contract-renewal',
+            'output-file-pattern': 'spectrum__contract-renewal__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'spectrum__contract-renewal__2022.odt',
+            'pdf-output-for-merged-file': False,
         },
         'contractual-appointment': {
             'input-template': '../template/spectrum/contractual-appointment/HR__contractual-appointment-template__2022.odt',

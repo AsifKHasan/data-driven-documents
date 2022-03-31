@@ -47,7 +47,7 @@ DATA_SOURCES = {
         'contractual-appointment': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'contractual-appointment',
-            'data-range': 'A3:N'
+            'data-range': 'A3:R'
         },
         'experience-certificate': {
             'sheet': 'HR__letters-certificates',
@@ -203,14 +203,18 @@ DATA_PROCESSORS = {
                 {'column': 3, 'key': 'name'},
                 {'column': 4, 'key': 'address'},
                 {'column': 5, 'key': 'effectivefrom'},
-                {'column': 6, 'key': 'validto'},
-                {'column': 7, 'key': 'designation'},
+                {'column': 6, 'key': 'designation'},
+                {'column': 7, 'key': 'grade'},
                 {'column': 8, 'key': 'wing'},
                 {'column': 9, 'key': 'unit'},
-                {'column': 10, 'key': 'supervisor'},
-                {'column': 11, 'key': 'remuneration'},
-                {'column': 12, 'key': 'site'},
-                {'column': 13, 'key': 'letterdate'},
+                {'column': 10, 'key': 'project'},
+                {'column': 11, 'key': 'supervisor'},
+                {'column': 12, 'key': 'remuneration'},
+                {'column': 13, 'key': 'site'},
+                {'column': 14, 'key': 'clause14'},
+                {'column': 15, 'key': 'clause15'},
+                {'column': 16, 'key': 'clause16'},
+                {'column': 17, 'key': 'letterdate'},
             ],
             'filter-column': 0,
             'filter-value': 'yes',

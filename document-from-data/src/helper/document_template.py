@@ -34,6 +34,11 @@ DATA_CONNECTORS = {
 
 DATA_SOURCES = {
     'spectrum' : {
+        'loan-application': {
+            'sheet': 'HR__non-salary-disbursements',
+            'worksheet': 'loan',
+            'data-range': 'A3:AC'
+        },
         'appointment-letter': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'appointment',
@@ -173,6 +178,40 @@ DATA_SOURCES = {
 
 DATA_PROCESSORS = {
     'spectrum': {
+        'loan-application': {
+            'columns': [
+                {'column':  1, 'key': 'seq'},
+                {'column':  2, 'key': 'applicationdate'},
+                {'column':  3, 'key': 'name'},
+                {'column':  4, 'key': 'joiningdate'},
+                {'column':  5, 'key': 'employmenttype'},
+                {'column':  6, 'key': 'designation'},
+                {'column':  7, 'key': 'grade'},
+                {'column':  8, 'key': 'wing'},
+                {'column':  9, 'key': 'unit'},
+                {'column': 10, 'key': 'remuneration'},
+                {'column': 11, 'key': 'allowance'},
+                {'column': 12, 'key': 'amountrequested'},
+                {'column': 13, 'key': 'purpose'},
+                {'column': 14, 'key': 'proposedinstallmentamount'},
+                {'column': 15, 'key': 'proposedinstallmentcount'},
+                {'column': 16, 'key': 'proposedinstallmentstart'},
+                {'column': 17, 'key': 'unitheadrecommendation'},
+                {'column': 18, 'key': 'hrrecommendation'},
+                {'column': 19, 'key': 'loanoutstanding'},
+                {'column': 20, 'key': 'outstandingamount'},
+                {'column': 21, 'key': 'faurecommendation'},
+                {'column': 22, 'key': 'bodnote'},
+                {'column': 23, 'key': 'mddmdnote'},
+                {'column': 24, 'key': 'status'},
+                {'column': 25, 'key': 'amountapproved'},
+                {'column': 26, 'key': 'approvedinstallmentamount'},
+                {'column': 27, 'key': 'approvedinstallmentcount'},
+                {'column': 28, 'key': 'approvedinstallmentstart'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
         'appointment-letter': {
             'columns': [
                 {'column': 1, 'key': 'seq'},
@@ -763,6 +802,15 @@ DATA_PROCESSORS = {
 
 DATA_SERIALIZERS = {
     'spectrum' : {
+        'loan-application': {
+            'input-template': '../template/spectrum/loan-application/HR__loan-application-template__2022.odt',
+            'output-dir': '../out/spectrum/loan-application',
+            'output-file-pattern': 'spectrum__loan-application__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'spectrum__loan-application__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
         'appointment-letter': {
             'input-template': '../template/spectrum/appointment-letter/HR__appointment-letter-template__2022.odt',
             'output-dir': '../out/spectrum/appointment-letter',

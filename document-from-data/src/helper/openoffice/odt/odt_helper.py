@@ -51,5 +51,5 @@ def merge_files(files, outfile):
 ''' given an odt file generates pdf in the given directory
 '''
 def generate_pdf(infile, outdir):
-    command_line = f'"{LIBREOFFICE_EXECUTABLE}" --headless --convert-to pdf --outdir {outdir} {infile}'
+    command_line = f'"{LIBREOFFICE_EXECUTABLE}" --headless --convert-to pdf --outdir "{outdir}" "{infile}"'
     subprocess.call(command_line, shell=True);

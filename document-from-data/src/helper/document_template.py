@@ -42,7 +42,7 @@ DATA_SOURCES = {
         'appointment-letter': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'appointment',
-            'data-range': 'A3:N'
+            'data-range': 'A3:O'
         },
         'confirmation-letter': {
             'sheet': 'HR__letters-certificates',
@@ -125,6 +125,11 @@ DATA_SOURCES = {
             'sheet': 'SSCL__letters-certificates',
             'worksheet': 'confirmation',
             'data-range': 'A3:N'
+        },
+        'offer-letter': {
+            'sheet': 'SSCL__letters-certificates',
+            'worksheet': 'offer',
+            'data-range': 'A3:M'
         },
         'money-receipt': {
             'sheet': 'SSCL__voucher-form',
@@ -228,10 +233,11 @@ DATA_PROCESSORS = {
                 {'column': 7, 'key': 'grade'},
                 {'column': 8, 'key': 'wing'},
                 {'column': 9, 'key': 'unit'},
-                {'column': 10, 'key': 'supervisor'},
-                {'column': 11, 'key': 'remuneration'},
-                {'column': 12, 'key': 'site'},
-                {'column': 13, 'key': 'letterdate'},
+                {'column': 10, 'key': 'team'},
+                {'column': 11, 'key': 'supervisor'},
+                {'column': 12, 'key': 'remuneration'},
+                {'column': 13, 'key': 'site'},
+                {'column': 14, 'key': 'letterdate'},
             ],
             'filter-column': 0,
             'filter-value': 'yes',
@@ -523,6 +529,24 @@ DATA_PROCESSORS = {
                 {'column': 11, 'key': 'increment'},
                 {'column': 12, 'key': 'supervisor'},
                 {'column': 13, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
+        'offer-letter': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'effectivefrom'},
+                {'column': 6, 'key': 'designation'},
+                {'column': 7, 'key': 'grade'},
+                {'column': 8, 'key': 'wing'},
+                {'column': 9, 'key': 'unit'},
+                {'column': 10, 'key': 'remuneration'},
+                {'column': 11, 'key': 'signatory'},
+                {'column': 12, 'key': 'letterdate'},
             ],
             'filter-column': 0,
             'filter-value': 'yes',
@@ -988,6 +1012,15 @@ DATA_SERIALIZERS = {
             'pdf-output-for-files': True,
             'merge-files': False,
             'merged-file-pattern': 'sscl__confirmation-letter__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
+        'offer-letter': {
+            'input-template': '../template/sscl/hrm/offer-letter/SSCL__offer-letter-template__2022.odt',
+            'output-dir': '../out/sscl/hrm/offer-letter',
+            'output-file-pattern': 'sscl__offer-letter__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__offer-letter__2022.odt',
             'pdf-output-for-merged-file': True,
         },
         'money-receipt': {

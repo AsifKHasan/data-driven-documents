@@ -1,27 +1,14 @@
 #!/usr/bin/env python3
 '''
-    generate templated confirmation letter from data
+    generate templated offer letter from data
 '''
 
 from helper.document_template import *
 
-
-''' generate documents from data
-'''
-def post_process_data(processed_data):
-    for item in processed_data['data']:
-        if item["raise"] == 'yes':
-            item["raise"] = ' with raise'
-        else:
-            item["raise"] = ''
-
-    return processed_data
-
-
 if __name__ == '__main__':
-    provider = 'google'
     org = 'SSCL'
-    document = 'confirmation-letter'
+    provider = 'google'
+    document = 'offer-letter'
 
     # get the appropriate data-connector
     data_connector = authenticate_to_data_service(org, provider)
@@ -31,9 +18,6 @@ if __name__ == '__main__':
 
     # get processed data from the raw data
     processed_data = process_data(org, document, source_data)
-
-    # post process data
-    processed_data = post_process_data(processed_data)
 
     # serialize final output from data
     output_data(org, document, processed_data)

@@ -121,6 +121,11 @@ DATA_SOURCES = {
         },
     },
     'SSCL' : {
+        'appointment-letter': {
+            'sheet': 'SSCL__letters-certificates',
+            'worksheet': 'appointment',
+            'data-range': 'A3:N'
+        },
         'confirmation-letter': {
             'sheet': 'SSCL__letters-certificates',
             'worksheet': 'confirmation',
@@ -516,6 +521,25 @@ DATA_PROCESSORS = {
         },
     },
     'SSCL': {
+        'appointment-letter': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'address'},
+                {'column': 5, 'key': 'effectivefrom'},
+                {'column': 6, 'key': 'designation'},
+                {'column': 7, 'key': 'grade'},
+                {'column': 8, 'key': 'wing'},
+                {'column': 9, 'key': 'unit'},
+                {'column': 10, 'key': 'supervisor'},
+                {'column': 11, 'key': 'remuneration'},
+                {'column': 12, 'key': 'site'},
+                {'column': 13, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
         'confirmation-letter': {
             'columns': [
                 {'column': 1, 'key': 'seq'},
@@ -1007,6 +1031,15 @@ DATA_SERIALIZERS = {
         },
     },
     'SSCL' : {
+        'appointment-letter': {
+            'input-template': '../template/sscl/hrm/appointment-letter/SSCL__appointment-letter-template__2022.odt',
+            'output-dir': '../out/sscl/hrm/appointment-letter',
+            'output-file-pattern': 'sscl__appointment-letter__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'sscl__appointment-letter__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
         'confirmation-letter': {
             'input-template': '../template/sscl/hrm/confirmation-letter/SSCL__confirmation-letter-template__2022.odt',
             'output-dir': '../out/sscl/hrm/confirmation-letter',

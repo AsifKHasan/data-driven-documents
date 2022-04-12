@@ -52,7 +52,7 @@ DATA_SOURCES = {
         'contract-renewal': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'contract-renewal',
-            'data-range': 'A3:W'
+            'data-range': 'A3:X'
         },
         'contractual-appointment': {
             'sheet': 'HR__letters-certificates',

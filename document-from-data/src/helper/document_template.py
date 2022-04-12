@@ -52,7 +52,7 @@ DATA_SOURCES = {
         'contract-renewal': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'contract-renewal',
-            'data-range': 'A3:V'
+            'data-range': 'A3:W'
         },
         'contractual-appointment': {
             'sheet': 'HR__letters-certificates',
@@ -287,10 +287,11 @@ DATA_PROCESSORS = {
                 {'column': 16, 'key': 'currency'},
                 {'column': 17, 'key': 'cycle'},
                 {'column': 18, 'key': 'site'},
-                {'column': 19, 'key': 'clause12'},
+                {'column': 19, 'key': 'clause3'},
                 {'column': 20, 'key': 'clause13'},
                 {'column': 21, 'key': 'clause14'},
-                {'column': 22, 'key': 'letterdate'},
+                {'column': 22, 'key': 'clause15'},
+                {'column': 23, 'key': 'letterdate'},
             ],
             'filter-column': 0,
             'filter-value': 'yes',

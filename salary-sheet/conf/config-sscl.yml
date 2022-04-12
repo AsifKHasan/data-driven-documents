@@ -6,13 +6,13 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Feb22.
-  - Mar22.
   - Apr22.
   - May22.
+  - EidBonus-Jun22.
   - Jun22.
+  - Jul22.
 selection:
   selected-account: 4002-778881-000
-  selected-mode: Bank
-  selected-month: Feb22.
-  selected-reference: 22/003
+  selected-mode: Cheque
+  selected-month: Apr22.
+  selected-reference: 22/005

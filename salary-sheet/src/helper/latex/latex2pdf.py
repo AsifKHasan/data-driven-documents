@@ -59,7 +59,7 @@ class Latex2Pdf(object):
             builder = LatexMkBuilder(variant='xelatex')
 
             parsed_latex = template.render(data=self._data)
-            print(parsed_latex)
+            # print(parsed_latex)
             pdf = builder.build_pdf(parsed_latex)
             pdf.save_to(self._OUTPUT_PDF)
         except Exception as e:

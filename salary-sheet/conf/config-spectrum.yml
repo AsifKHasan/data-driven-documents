@@ -11,9 +11,17 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Feb22.
   - Mar22.
-  - Apr23.
+  - EidBonus-Apr22.
+  - Apr22.
+  - May22.
+  - Jun22.
+  - Jul22.
+  - Aug22.
+  - Sep22.
+  - Oct22.
+  - Nov22.
+  - Dec22.
   wings:
   - Acquisition
   - Delivery

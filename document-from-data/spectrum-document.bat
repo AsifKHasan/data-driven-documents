@@ -8,7 +8,7 @@ set DOC=%1
 
 :: the scripts are in src directory
 pushd src
-%ORG%-%DOC%.py
+python %ORG%-%DOC%.py
 
 if errorlevel 1 (
   popd

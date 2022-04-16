@@ -7,7 +7,7 @@ set ORG="spectrum"
 
 :: the scripts are in src directory
 pushd src
-%ORG%-salary-advice-app.py
+python %ORG%-salary-advice-app.py
 
 if errorlevel 1 (
   popd

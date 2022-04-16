@@ -21,7 +21,7 @@ master-data:
 selection:
   selected-account: '14111060000068'
   selected-filter: Software
-  selected-mode: Bank
-  selected-month: Feb22.
+  selected-mode: Cheque
+  selected-month: Mar22.
   selected-reference: 22/891
-  selected-wing: Operations
+  selected-wing: Acquisition

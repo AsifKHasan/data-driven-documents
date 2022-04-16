@@ -3,3 +3,5 @@ gspread
 OOoPy
 unoserver
 odfpy
+termcolor
+colorama

@@ -44,6 +44,11 @@ DATA_SOURCES = {
             'worksheet': 'appointment',
             'data-range': 'A3:O'
         },
+        'clearance-certificate': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'clearance-certificate',
+            'data-range': 'A3:S'
+        },
         'confirmation-letter': {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'confirmation',
@@ -83,6 +88,11 @@ DATA_SOURCES = {
             'sheet': 'HR__letters-certificates',
             'worksheet': 'offer',
             'data-range': 'A3:L'
+        },
+        'office-memo': {
+            'sheet': 'HR__letters-certificates',
+            'worksheet': 'memo',
+            'data-range': 'A3:I'
         },
         'release-letter': {
             'sheet': 'HR__letters-certificates',
@@ -247,6 +257,36 @@ DATA_PROCESSORS = {
             'filter-column': 0,
             'filter-value': 'yes',
         },
+        'clearance-certificate': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 3, 'key': 'salutation'},
+                {'column': 4, 'key': 'name'},
+                {'column': 5, 'key': 'designation'},
+                {'column': 6, 'key': 'employmenttype'},
+                {'column': 7, 'key': 'unit'},
+                {'column': 8, 'key': 'reason'},
+                {'column': 9, 'key': 'effectivefrom'},
+                {'column': 17, 'key': 'signatory'},
+                {'column': 18, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+            'tabular-data': [
+                {
+                    'table-name': 'TableItem',
+                    'rows-for-data': (1, 10),
+                    'columns': [
+                        {'column': 10, 'key': 'serial', 'cell': 0},
+                        {'column': 14, 'key': 'provider', 'cell': 1},
+                        {'column': 15, 'key': 'outstanding', 'cell': 2},
+                        {'column': 16, 'key': 'remarks', 'cell': 3},
+                    ],
+                    'include-column': 2,
+                    'include-value': 'yes',
+                },
+            ],
+        },
         'confirmation-letter': {
             'columns': [
                 {'column': 1, 'key': 'seq'},
@@ -400,6 +440,20 @@ DATA_PROCESSORS = {
                 {'column': 9, 'key': 'unit'},
                 {'column': 10, 'key': 'remuneration'},
                 {'column': 11, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
+        'office-memo': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'designation'},
+                {'column': 5, 'key': 'from'},
+                {'column': 6, 'key': 'subject'},
+                {'column': 7, 'key': 'content'},
+                {'column': 8, 'key': 'letterdate'},
             ],
             'filter-column': 0,
             'filter-value': 'yes',
@@ -895,6 +949,15 @@ DATA_SERIALIZERS = {
             'merged-file-pattern': 'spectrum__appointment-letter__2022.odt',
             'pdf-output-for-merged-file': False,
         },
+        'clearance-certificate': {
+            'input-template': '../template/spectrum/hrm/clearance-certificate/HR__clearance-certificate-template__2022.odt',
+            'output-dir': '../out/spectrum/hrm/clearance-certificate',
+            'output-file-pattern': 'spectrum__clearance-certificate__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'spectrum__clearance-certificate__2022.odt',
+            'pdf-output-for-merged-file': False,
+        },
         'confirmation-letter': {
             'input-template': '../template/spectrum/hrm/confirmation-letter/HR__confirmation-letter-template__2022.odt',
             'output-dir': '../out/spectrum/hrm/confirmation-letter',
@@ -965,6 +1028,15 @@ DATA_SERIALIZERS = {
             'pdf-output-for-files': True,
             'merge-files': True,
             'merged-file-pattern': 'spectrum__offer-letter__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
+        'office-memo': {
+            'input-template': '../template/spectrum/hrm/office-memo/HR__office-memo-template__2022.odt',
+            'output-dir': '../out/spectrum/hrm/office-memo',
+            'output-file-pattern': 'spectrum__office-memo__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': False,
+            'merged-file-pattern': 'spectrum__office-memo__2022.odt',
             'pdf-output-for-merged-file': True,
         },
         'release-letter': {

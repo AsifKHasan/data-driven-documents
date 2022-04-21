@@ -146,6 +146,11 @@ DATA_SOURCES = {
             'worksheet': 'offer',
             'data-range': 'A3:M'
         },
+        'salary-certificate': {
+            'sheet': 'SSCL__letters-certificates',
+            'worksheet': 'salary-certificate',
+            'data-range': 'A3:Q'
+        },
         'money-receipt': {
             'sheet': 'SSCL__voucher-form',
             'worksheet': 'money-receipt',
@@ -628,6 +633,28 @@ DATA_PROCESSORS = {
                 {'column': 10, 'key': 'remuneration'},
                 {'column': 11, 'key': 'signatory'},
                 {'column': 12, 'key': 'letterdate'},
+            ],
+            'filter-column': 0,
+            'filter-value': 'yes',
+        },
+        'salary-certificate': {
+            'columns': [
+                {'column': 1, 'key': 'seq'},
+                {'column': 2, 'key': 'salutation'},
+                {'column': 3, 'key': 'name'},
+                {'column': 4, 'key': 'designation'},
+                {'column': 5, 'key': 'unit'},
+                {'column': 6, 'key': 'joiningdate'},
+                {'column': 7, 'key': 'employmenttype'},
+                {'column': 8, 'key': 'basic'},
+                {'column': 9, 'key': 'houserent'},
+                {'column': 10, 'key': 'medical'},
+                {'column': 11, 'key': 'conveyance'},
+                {'column': 12, 'key': 'gross'},
+                {'column': 13, 'key': 'tax'},
+                {'column': 14, 'key': 'net'},
+                {'column': 15, 'key': 'signatory'},
+                {'column': 16, 'key': 'letterdate'},
             ],
             'filter-column': 0,
             'filter-value': 'yes',
@@ -1129,6 +1156,15 @@ DATA_SERIALIZERS = {
             'pdf-output-for-files': True,
             'merge-files': False,
             'merged-file-pattern': 'sscl__offer-letter__2022.odt',
+            'pdf-output-for-merged-file': True,
+        },
+        'salary-certificate': {
+            'input-template': '../template/sscl/hrm/salary-certificate/SSCL__salary-certificate-template__2022.odt',
+            'output-dir': '../out/sscl/hrm/salary-certificate',
+            'output-file-pattern': 'sscl__salary-certificate__2022__{seq}__{name}.odt',
+            'pdf-output-for-files': True,
+            'merge-files': True,
+            'merged-file-pattern': 'sscl__salary-certificate__2022.odt',
             'pdf-output-for-merged-file': True,
         },
         'money-receipt': {

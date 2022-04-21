@@ -44,6 +44,7 @@ class AdviceGenerator:
         totalamountinwords = num2words.num2words(totalamount, to='currency', lang='en_IN').replace('euro', 'taka').replace('cents', 'paisa')
         data['month'] = selection['selected-month']
         data['date'] = datetime.datetime.now().strftime('%B %d, %Y')
+        data['selectedaccount'] = selection['selected-account']
         data['totalamount'] = '{:,.2f}'.format(totalamount)
         data['totalamountinwords'] = totalamountinwords
         data['salary'] = salary

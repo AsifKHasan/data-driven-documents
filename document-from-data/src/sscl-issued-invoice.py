@@ -17,6 +17,7 @@ def post_process_data(processed_data):
 
 if __name__ == '__main__':
     org = 'SSCL'
+    unit = 'scm'
     provider = 'google'
     document = 'issued-invoice'
 
@@ -24,13 +25,13 @@ if __name__ == '__main__':
     data_connector = authenticate_to_data_service(org, provider)
 
     # get raw data from source
-    source_data = acquire_data(org, document, data_connector)
+    source_data = acquire_data(org, unit, document, data_connector)
 
     # get processed data from the raw data
-    processed_data = process_data(org, document, source_data)
+    processed_data = process_data(org, unit, document, source_data)
 
     # post process data
     processed_data = post_process_data(processed_data)
 
     # serialize final output from data
-    output_data(org, document, processed_data)
+    output_data(org, unit, document, processed_data)

@@ -95,6 +95,11 @@ DATA_SOURCES = {
                 'worksheet': 'memo',
                 'data-range': 'A3:I'
             },
+            'promotion-letter': {
+                'sheet': 'HR__letters-certificates',
+                'worksheet': 'promotion',
+                'data-range': 'A3:L'
+            },
             'release-letter': {
                 'sheet': 'HR__letters-certificates',
                 'worksheet': 'release',
@@ -470,6 +475,23 @@ DATA_PROCESSORS = {
                     {'column': 6, 'key': 'subject'},
                     {'column': 7, 'key': 'content'},
                     {'column': 8, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
+            'promotion-letter': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'effectivefrom'},
+                    {'column': 5, 'key': 'designation'},
+                    {'column': 6, 'key': 'grade'},
+                    {'column': 7, 'key': 'wing'},
+                    {'column': 8, 'key': 'unit'},
+                    {'column': 9, 'key': 'team'},
+                    {'column': 10, 'key': 'supervisor'},
+                    {'column': 11, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -1086,6 +1108,15 @@ DATA_SERIALIZERS = {
                 'merge-files': False,
                 'merged-file-pattern': 'spectrum__office-memo__2022.odt',
                 'pdf-output-for-merged-file': True,
+            },
+            'promotion-letter': {
+                'input-template': '../template/spectrum/hrm/promotion-letter/HR__promotion-letter-template__2022.odt',
+                'output-dir': '../out/spectrum/hrm/promotion-letter',
+                'output-file-pattern': 'spectrum__promotion-letter__2022__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': False,
+                'merged-file-pattern': 'spectrum__promotion-letter__2022.odt',
+                'pdf-output-for-merged-file': False,
             },
             'release-letter': {
                 'input-template': '../template/spectrum/hrm/release-letter/HR__release-letter-template__2022.odt',

@@ -58,7 +58,7 @@ DATA_SOURCES = {
             'contract-renewal': {
                 'sheet': 'HR__letters-certificates',
                 'worksheet': 'contract-renewal',
-                'data-range': 'A3:X'
+                'data-range': 'A3:Y'
             },
             'contractual-appointment': {
                 'sheet': 'HR__letters-certificates',
@@ -108,7 +108,7 @@ DATA_SOURCES = {
             'salary-certificate': {
                 'sheet': 'HR__letters-certificates',
                 'worksheet': 'salary-certificate',
-                'data-range': 'A3:Q'
+                'data-range': 'A3:R'
             },
             'salary-enhancement-letter': {
                 'sheet': 'spectrum__salary-revision__2022',
@@ -348,11 +348,8 @@ DATA_PROCESSORS = {
                     {'column': 16, 'key': 'currency'},
                     {'column': 17, 'key': 'cycle'},
                     {'column': 18, 'key': 'site'},
-                    {'column': 19, 'key': 'clause3'},
-                    {'column': 20, 'key': 'clause13'},
-                    {'column': 21, 'key': 'clause14'},
-                    {'column': 22, 'key': 'clause15'},
-                    {'column': 23, 'key': 'letterdate'},
+                    {'column': 19, 'key': 'clause2'},
+                    {'column': 24, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -528,7 +525,8 @@ DATA_PROCESSORS = {
                     {'column': 13, 'key': 'tax'},
                     {'column': 14, 'key': 'net'},
                     {'column': 15, 'key': 'signatory'},
-                    {'column': 16, 'key': 'letterdate'},
+                    {'column': 16, 'key': 'note1'},
+                    {'column': 17, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -1132,7 +1130,7 @@ DATA_SERIALIZERS = {
                 'output-dir': '../out/spectrum/hrm/salary-certificate',
                 'output-file-pattern': 'spectrum__salary-certificate__2022__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
-                'merge-files': True,
+                'merge-files': False,
                 'merged-file-pattern': 'spectrum__salary-certificate__2022.odt',
                 'pdf-output-for-merged-file': True,
             },

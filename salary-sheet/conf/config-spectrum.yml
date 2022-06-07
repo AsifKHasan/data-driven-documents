@@ -10,8 +10,6 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Mar22.
-  - EidBonus-Apr22.
   - Apr22.
   - May22.
   - Jun22.
@@ -28,7 +26,7 @@ master-data:
 selection:
   selected-account: '2141313009163'
   selected-filter: Software
-  selected-mode: Bank
-  selected-month: EidBonus-Apr22.
-  selected-reference: 22/891
+  selected-mode: Cash
+  selected-month: Apr22.
+  selected-reference: 22/973
   selected-wing: Acquisition

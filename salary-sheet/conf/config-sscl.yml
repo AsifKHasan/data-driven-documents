@@ -6,11 +6,8 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Mar22.
-  - EidBonus-Apr22.
-  - Apr22.
-  - May22.
   - Jun22.
+  - EidBonus-Apr22.
   - Jul22.
   - Aug22.
   - Sep22.

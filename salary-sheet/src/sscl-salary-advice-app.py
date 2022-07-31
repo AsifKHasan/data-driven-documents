@@ -15,8 +15,8 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 
-
 from sscl_advice_generator import AdviceGenerator
+
 
 class SalaryAdviceApp:
     def __init__(self, master, config):
@@ -135,6 +135,7 @@ class SalaryAdviceApp:
         else:
             messagebox.showerror('Error', result['msg'])
 
+
 class ThreadedClient(threading.Thread):
 
     def __init__(self, queue, fcn):
@@ -145,6 +146,7 @@ class ThreadedClient(threading.Thread):
     def run(self):
         time.sleep(1)
         self.queue.put(self.fcn())
+
 
 def spawnthread(fcn, queue):
     thread = ThreadedClient(queue, fcn)

@@ -10,14 +10,18 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Jun22.
-  - EidBonus-Jul22.
   - Jul22.
   - Aug22.
   - Sep22.
   - Oct22.
   - Nov22.
   - Dec22.
+  - Jan23.
+  - Feb23.
+  - Mar23.
+  - Apr23.
+  - May23.
+  - Jun23.
   wings:
   - Acquisition
   - Delivery
@@ -26,6 +30,6 @@ selection:
   selected-account: '2141313009163'
   selected-filter: Software
   selected-mode: Cash
-  selected-month: Jun22.
+  selected-month: Jul22.
   selected-reference: 22/973
   selected-wing: Acquisition

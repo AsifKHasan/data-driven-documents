@@ -128,7 +128,7 @@ DATA_SOURCES = {
             'transfer-letter': {
                 'sheet': 'HR__letters-certificates',
                 'worksheet': 'transfer',
-                'data-range': 'A3:M'
+                'data-range': 'A3:N'
             },
             'warning-letter': {
                 'sheet': 'HR__letters-certificates',
@@ -592,7 +592,8 @@ DATA_PROCESSORS = {
                     {'column': 9, 'key': 'tounit'},
                     {'column': 10, 'key': 'supervisor'},
                     {'column': 11, 'key': 'superdesignation'},
-                    {'column': 12, 'key': 'letterdate'},
+                    {'column': 12, 'key': 'signatory'},
+                    {'column': 13, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',

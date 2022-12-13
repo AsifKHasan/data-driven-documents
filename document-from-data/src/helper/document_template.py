@@ -159,6 +159,11 @@ DATA_SOURCES = {
                 'worksheet': 'salary-certificate',
                 'data-range': 'A3:Q'
             },
+            'salary-enhancement-letter': {
+                'sheet': 'sscl__salary-revision__2022',
+                'worksheet': 'sscl-2022',
+                'data-range': 'A5:W'
+            },
         },
         'f&a': {
             'money-receipt': {
@@ -693,6 +698,27 @@ DATA_PROCESSORS = {
                 'filter-column': 0,
                 'filter-value': 'yes',
             },
+            'salary-enhancement-letter': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'wing'},
+                    {'column': 5, 'key': 'unit'},
+                    {'column': 6, 'key': 'team'},
+                    {'column': 7, 'key': 'supervisor'},
+                    {'column': 13, 'key': 'salary'},
+                    {'column': 14, 'key': 'increment'},
+                    {'column': 17, 'key': 'currentgrade'},
+                    {'column': 18, 'key': 'promotion'},
+                    {'column': 19, 'key': 'grade'},
+                    {'column': 20, 'key': 'designation'},
+                    {'column': 21, 'key': 'effectivefrom'},
+                    {'column': 22, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
         },
         'f&a': {
             'money-receipt': {
@@ -1218,6 +1244,15 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-files': True,
                 'merge-files': True,
                 'merged-file-pattern': 'sscl__salary-certificate__2022.odt',
+                'pdf-output-for-merged-file': True,
+            },
+            'salary-enhancement-letter': {
+                'input-template': '../template/sscl/hrm/salary-enhancement-letter/SSCL__salary-enhancement-letter-template__2022.odt',
+                'output-dir': '../out/sscl/hrm/salary-enhancement-letter',
+                'output-file-pattern': 'SSCL__salary-enhancement-letter__2022__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': True,
+                'merged-file-pattern': 'SSCL__salary-enhancement-letter__2022.odt',
                 'pdf-output-for-merged-file': True,
             },
         },

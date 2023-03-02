@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage[a4paper,portrait,left=0.50in, right=0.50in, top=1.50in, bottom=1.50in]{geometry}
+\usepackage[a4paper,portrait,left=1.00in, right=0.50in, top=1.50in, bottom=1.50in]{geometry}
 \usepackage{fontspec}
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -64,18 +64,35 @@ $\overline{\makebox[4.0cm]{Director}}$
 \centerline{Salary Advice for the month of {{% data.month %}} }
 }
 
-\begin{longtable}{|p{1.00cm}|p{6.00cm}|p{3.00cm}|p{3.50cm}|}
+\begin{longtable}{|p{0.40in}|p{3.00in}|p{1.20in}|p{1.40in}|}
   \hline
     \centering\textbf{\#} & \raggedright\textbf{Name of Employee} & \raggedright\textbf{Saving A/C No} & \raggedleft\textbf{Net Pay in BDT}
-    \TBstrut \tabularnewline \hline
+    \TBstrut
+    \tabularnewline
+    \hline
     \endhead
+
+    \multicolumn{2}{l}{$\overline{\makebox[2.0in]{MD/DMD}}$}  &  \multicolumn{2}{r}{$\overline{\makebox[2.0in]{Director}}$}
+    \rule{0pt}{60pt}
+    \TBstrut
+    \tabularnewline
     \endfoot
+    
     \bottomrule
+    
     \multicolumn{2}{l}{\textbf{Total}}  &  \multicolumn{2}{r}{\textbf{ {{% data.totalamount %}} }}
-    \tabularnewline \hline
+    \rule{0pt}{10pt}
+    \tabularnewline
+    \hline
     \multicolumn{4}{r}{\textbf{ {{% data.totalamountinwords %}} }}
-    \tabularnewline \hline
+    \tabularnewline
+    \hline
+    \multicolumn{2}{l}{$\overline{\makebox[2.0in]{Chairman/DMD}}$}  &  \multicolumn{2}{r}{$\overline{\makebox[2.0in]{Director}}$}
+    \rule{0pt}{60pt}
+    \TBstrut
+    \tabularnewline
     \endlastfoot
+    
     {% for row in data.salary %}
       \TBstrut
       \centering  {{% loop.index %}}
@@ -85,11 +102,5 @@ $\overline{\makebox[4.0cm]{Director}}$
       \tabularnewline \hline
     {% endfor %}
 \end{longtable}
-
-\vspace{2.0cm}
-
-$\overline{\makebox[4.0cm]{Chairman/MD}}$
-\hspace{8.0cm}
-$\overline{\makebox[4.0cm]{Director}}$
 
 \end{document}

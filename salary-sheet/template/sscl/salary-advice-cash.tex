@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage[a4paper,portrait,left=0.50in, right=0.50in, top=1.50in, bottom=1.50in]{geometry}
+\usepackage[a4paper,portrait,left=1.00in, right=0.50in, top=1.50in, bottom=1.50in]{geometry}
 \usepackage{fontspec}
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -38,13 +38,19 @@
     \centering\textbf{\#} & \raggedright\textbf{Unit} & \raggedright\textbf{Name of Employee} & \raggedright\textbf{Signature} & \raggedleft\textbf{Net Pay in BDT}
     \TBstrut \tabularnewline \hline
     \endhead
+
     \endfoot
+
     \bottomrule
+
     \multicolumn{3}{l}{\textbf{Total}}  &  \multicolumn{2}{r}{\textbf{ {{% data.totalamount %}} }}
-    \tabularnewline \hline
+    \tabularnewline
+    \hline
     \multicolumn{5}{r}{\textbf{ {{% data.totalamountinwords %}} }}
-    \tabularnewline \hline
+    \tabularnewline
+    \hline
     \endlastfoot
+
     {% for row in data.salary %}
       \TBstrut
       \centering  {{% loop.index %}}

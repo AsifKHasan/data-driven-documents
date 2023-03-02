@@ -10,26 +10,26 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Jul22.
-  - Aug22.
-  - Sep22.
-  - Oct22.
-  - Nov22.
-  - Dec22.
   - Jan23.
   - Feb23.
   - Mar23.
   - Apr23.
   - May23.
   - Jun23.
+  - Jul23.
+  - Aug23.
+  - Sep23.
+  - Oct23.
+  - Nov23.
+  - Dec23.
   wings:
   - Acquisition
   - Delivery
   - Operations
 selection:
   selected-account: '2141313009163'
-  selected-filter: Software
-  selected-mode: Cash
-  selected-month: Jul22.
-  selected-reference: 22/973
+  selected-filter: None
+  selected-mode: Bank
+  selected-month: Jan23.
+  selected-reference: 23/973
   selected-wing: Acquisition

@@ -154,6 +154,11 @@ DATA_SOURCES = {
                 'worksheet': 'confirmation',
                 'data-range': 'A3:N'
             },
+            'experience-certificate': {
+                'sheet': 'SSCL__letters-certificates',
+                'worksheet': 'experience-certificate',
+                'data-range': 'A3:K'
+            },
             'internship-certificate': {
                 'sheet': 'SSCL__letters-certificates',
                 'worksheet': 'internship-certificate',
@@ -168,6 +173,11 @@ DATA_SOURCES = {
                 'sheet': 'SSCL__letters-certificates',
                 'worksheet': 'offer',
                 'data-range': 'A3:M'
+            },
+            'release-letter': {
+                'sheet': 'SSCL__letters-certificates',
+                'worksheet': 'release',
+                'data-range': 'A3:J'
             },
             'salary-certificate': {
                 'sheet': 'SSCL__letters-certificates',
@@ -707,6 +717,22 @@ DATA_PROCESSORS = {
                 'filter-column': 0,
                 'filter-value': 'yes',
             },
+            'experience-certificate': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'designation'},
+                    {'column': 5, 'key': 'unit'},
+                    {'column': 6, 'key': 'joiningdate'},
+                    {'column': 7, 'key': 'separationdate'},
+                    {'column': 8, 'key': 'employmenttype'},
+                    {'column': 9, 'key': 'signatory'},
+                    {'column': 10, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
             'internship-certificate': {
                 'columns': [
                     {'column': 1, 'key': 'seq'},
@@ -755,6 +781,21 @@ DATA_PROCESSORS = {
                     {'column': 10, 'key': 'remuneration'},
                     {'column': 11, 'key': 'signatory'},
                     {'column': 12, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
+            'release-letter': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'address'},
+                    {'column': 5, 'key': 'effectivefrom'},
+                    {'column': 6, 'key': 'designation'},
+                    {'column': 7, 'key': 'unit'},
+                    {'column': 8, 'key': 'signatory'},
+                    {'column': 9, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -1320,6 +1361,15 @@ DATA_SERIALIZERS = {
                 'merged-file-pattern': 'sscl__confirmation-letter__2023.odt',
                 'pdf-output-for-merged-file': True,
             },
+            'experience-certificate': {
+                'input-template': '../template/sscl/hrm/experience-certificate/SSCL__experience-certificate-template__2023.odt',
+                'output-dir': '../out/sscl/hrm/experience-certificate',
+                'output-file-pattern': 'sscl__experience-certificate__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': True,
+                'merged-file-pattern': 'sscl__experience-certificate__2023.odt',
+                'pdf-output-for-merged-file': True,
+            },
             'internship-certificate': {
                 'input-template': '../template/sscl/hrm/internship-certificate/SSCL__internship-certificate-template__2023.odt',
                 'output-dir': '../out/sscl/hrm/internship-certificate',
@@ -1345,6 +1395,15 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-files': True,
                 'merge-files': False,
                 'merged-file-pattern': 'sscl__offer-letter__2023.odt',
+                'pdf-output-for-merged-file': True,
+            },
+            'release-letter': {
+                'input-template': '../template/sscl/hrm/release-letter/SSCL__release-letter-template__2023.odt',
+                'output-dir': '../out/sscl/hrm/release-letter',
+                'output-file-pattern': 'sscl__release-letter__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': True,
+                'merged-file-pattern': 'sscl__release-letter__2023.odt',
                 'pdf-output-for-merged-file': True,
             },
             'salary-certificate': {

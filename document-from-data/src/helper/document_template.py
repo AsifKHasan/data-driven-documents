@@ -115,6 +115,11 @@ DATA_SOURCES = {
                 'worksheet': 'spectrum-2022',
                 'data-range': 'A5:W'
             },
+            'salary-revision-letter': {
+                'sheet': 'HR__letters-certificates',
+                'worksheet': 'salary-revision',
+                'data-range': 'A3:I'
+            },
             'separation-letter': {
                 'sheet': 'HR__letters-certificates',
                 'worksheet': 'separation',
@@ -578,6 +583,20 @@ DATA_PROCESSORS = {
                     {'column': 20, 'key': 'designation'},
                     {'column': 21, 'key': 'effectivefrom'},
                     {'column': 22, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
+            'salary-revision-letter': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'wing'},
+                    {'column': 5, 'key': 'unit'},
+                    {'column': 6, 'key': 'effectivefrom'},
+                    {'column': 7, 'key': 'salary'},
+                    {'column': 8, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -1292,6 +1311,15 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-files': True,
                 'merge-files': True,
                 'merged-file-pattern': 'spectrum__salary-enhancement-letter__2023.odt',
+                'pdf-output-for-merged-file': True,
+            },
+            'salary-revision-letter': {
+                'input-template': '../template/spectrum/hrm/salary-revision-letter/HR__salary-revision-letter-template__2023.odt',
+                'output-dir': '../out/spectrum/hrm/salary-revision-letter',
+                'output-file-pattern': 'spectrum__salary-revision-letter__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': False,
+                'merged-file-pattern': 'spectrum__salary-revision-letter__2023.odt',
                 'pdf-output-for-merged-file': True,
             },
             'separation-letter': {

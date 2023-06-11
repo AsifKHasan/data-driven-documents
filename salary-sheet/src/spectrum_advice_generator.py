@@ -14,6 +14,16 @@ from helper.latex.latex2pdf import Latex2Pdf
 from helper.google.google_helper import GoogleHelper
 
 GSHEET_NAME = 'FAU__SalarySheet__2022-2023'
+COL_BANK_ACCOUNT_NAME = 2
+COL_WING = 4
+COL_UNIT = 5
+COL_TYPE = 6
+COL_BANK_ACCOUNT_NUMBER = 9
+COL_NET_PAYABLE = 60
+COL_PAY_THROUGH = 62
+COL_PAY_STATUS = 63
+
+ROW_DATA_START = 5
 
 class AdviceGenerator:
 
@@ -21,7 +31,7 @@ class AdviceGenerator:
         ws = self.context['gsheet'].worksheet('title', selection['selected-month'])
         vals = ws.get_all_values(returnas='matrix', majdim='ROWS', include_tailing_empty=True)
 
-        salary = list(map(lambda v: {'wing' : v[4].strip(), 'unit' : v[5].strip(), 'name' : v[2].strip(), 'type' : v[6].strip().replace('-', ''), 'account' : v[9].strip(), 'payable' : v[59].strip().replace('-', ''), 'paythrough' : v[61].strip(), 'paystatus' : v[62].strip()}, vals[5:]))
+        salary = list(map(lambda v: {'wing' : v[COL_WING].strip(), 'unit' : v[COL_UNIT].strip(), 'name' : v[COL_BANK_ACCOUNT_NAME].strip(), 'type' : v[COL_TYPE].strip().replace('-', ''), 'account' : v[9].strip(), 'payable' : v[COL_NET_PAYABLE].strip().replace('-', ''), 'paythrough' : v[COL_PAY_THROUGH].strip(), 'paystatus' : v[COL_PAY_STATUS].strip()}, vals[5:]))
         if selection['selected-mode'] in ['Cash', 'Cheque']:
             data = {'wing': selection['selected-wing']}
             salary = list(filter(lambda v: v['wing'] == selection['selected-wing'] and v['paythrough'] == selection['selected-mode'] and v['paystatus'] == 'In Process', salary))

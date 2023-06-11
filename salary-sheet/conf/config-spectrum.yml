@@ -15,6 +15,7 @@ master-data:
   - Mar23.
   - Apr23.
   - May23.
+  - EidBouns-Jun23.
   - Jun23.
   - Jul23.
   - Aug23.
@@ -30,6 +31,6 @@ selection:
   selected-account: '2141313009163'
   selected-filter: None
   selected-mode: Bank
-  selected-month: Apr23.
-  selected-reference: 23/1144
+  selected-month: EidBouns-Jun23.
+  selected-reference: 23/1147
   selected-wing: Acquisition

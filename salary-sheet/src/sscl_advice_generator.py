@@ -22,7 +22,6 @@ COL_PAY_STATUS = 62
 
 ROW_DATA_START = 5
 
-
 class AdviceGenerator:
 
     def get_data(self, selection, json_path):

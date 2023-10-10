@@ -3,8 +3,8 @@ master-data:
   - 2141313009163
   bank-filters:
   - None
-  - BdREN
   - Software
+  - R&D
   modes:
   - Cash
   - Cheque
@@ -29,8 +29,8 @@ master-data:
   - Operations
 selection:
   selected-account: '2141313009163'
-  selected-filter: Software
+  selected-filter: R&D
   selected-mode: Bank
-  selected-month: May23.
+  selected-month: Sep23.
   selected-reference: 23/1150
   selected-wing: Acquisition

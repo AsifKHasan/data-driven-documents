@@ -4,7 +4,6 @@
 '''
 import os
 import json
-import time
 import datetime
 
 import pygsheets
@@ -13,7 +12,7 @@ import num2words
 from helper.latex.latex2pdf import Latex2Pdf
 from helper.google.google_helper import GoogleHelper
 
-GSHEET_NAME = 'FAU__SalarySheet__2022-2023'
+GSHEET_NAME = 'FAU__SalarySheet__2023-2024'
 COL_BANK_ACCOUNT_NAME = 2
 COL_WING = 4
 COL_UNIT = 5
@@ -38,14 +37,16 @@ class AdviceGenerator:
 
         elif selection['selected-mode'] == 'Bank':
             data = {'refno': selection['selected-reference']}
+            
+            # filters like Software, BdREN, R&D
             if selection['selected-filter'] == 'Software':
-                salary = list(filter(lambda v: v['unit'] == 'Software Services' and v['type'] != 'BdREN' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
+                salary = list(filter(lambda v: v['unit'] == 'Software Services' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
 
-            elif selection['selected-filter'] == 'BdREN':
-                salary = list(filter(lambda v: v['type'] == 'BdREN' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
+            elif selection['selected-filter'] == 'R&D':
+                salary = list(filter(lambda v: v['unit'] == 'Research and Development' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
 
             else:
-                salary = list(filter(lambda v: v['unit'] != 'Software Services' and v['type'] != 'BdREN' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
+                salary = list(filter(lambda v: v['unit'] not in ['Software Services', 'Research and Development'] and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
 
         else:
             return None
@@ -65,11 +66,13 @@ class AdviceGenerator:
         return data
 
     def gnerate_pdf(self, selection):
+        # get the paths
+        template_file, json_path, pdf_path = self.get_paths(selection)
+        
         if not self.context['gsheet']:
             return {'success': False, 'msg': 'Salary Sheet not accessible'}
 
-        # get the paths
-        template_file, json_path, pdf_path = self.get_paths(selection)
+        # get the data
         data = self.get_data(selection, json_path)
         if not data:
             return {'success': False, 'msg': 'Failed to get any data from selection'}
@@ -100,7 +103,7 @@ class AdviceGenerator:
 
     def get_paths(self, selection):
         prefix = 'salary-advice-{0}'.format(selection['selected-mode']).lower()
-        if selection['selected-mode'] == 'Bank' and selection['selected-filter'] in ['BdREN', 'Software']:
+        if selection['selected-mode'] == 'Bank' and selection['selected-filter'] in ['R&D', 'Software']:
             prefix = '{0}-{1}'.format(prefix, selection['selected-filter']).lower()
 
         out_dir = '{0}/{1}'.format(self.context['out-dir'], selection['selected-month'])

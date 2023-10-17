@@ -14,13 +14,13 @@ from helper.google.google_helper import GoogleHelper
 
 GSHEET_NAME = 'FAU__SalarySheet__2023-2024'
 COL_BANK_ACCOUNT_NAME = 2
-COL_WING = 4
-COL_UNIT = 5
-COL_TYPE = 6
-COL_BANK_ACCOUNT_NUMBER = 9
-COL_NET_PAYABLE = 60
-COL_PAY_THROUGH = 62
-COL_PAY_STATUS = 63
+COL_WING = 6
+COL_UNIT = 7
+COL_TYPE = 8
+COL_BANK_ACCOUNT_NUMBER = 11
+COL_NET_PAYABLE = 62
+COL_PAY_THROUGH = 64
+COL_PAY_STATUS = 65
 
 ROW_DATA_START = 5
 
@@ -37,7 +37,7 @@ class AdviceGenerator:
 
         elif selection['selected-mode'] == 'Bank':
             data = {'refno': selection['selected-reference']}
-            
+
             # filters like Software, BdREN, R&D
             if selection['selected-filter'] == 'Software':
                 salary = list(filter(lambda v: v['unit'] == 'Software Services' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
@@ -68,7 +68,7 @@ class AdviceGenerator:
     def gnerate_pdf(self, selection):
         # get the paths
         template_file, json_path, pdf_path = self.get_paths(selection)
-        
+
         if not self.context['gsheet']:
             return {'success': False, 'msg': 'Salary Sheet not accessible'}
 

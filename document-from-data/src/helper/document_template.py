@@ -111,8 +111,8 @@ DATA_SOURCES = {
                 'data-range': 'A3:R'
             },
             'salary-enhancement-letter': {
-                'sheet': 'spectrum__salary-revision__2022',
-                'worksheet': 'spectrum-2022',
+                'sheet': 'spectrum__salary-revision__2023',
+                'worksheet': 'spectrum-2023',
                 'data-range': 'A5:W'
             },
             'salary-revision-letter': {
@@ -575,14 +575,14 @@ DATA_PROCESSORS = {
                     {'column': 5, 'key': 'unit'},
                     {'column': 6, 'key': 'team'},
                     {'column': 7, 'key': 'supervisor'},
-                    {'column': 13, 'key': 'salary'},
-                    {'column': 14, 'key': 'increment'},
-                    {'column': 17, 'key': 'currentgrade'},
-                    {'column': 18, 'key': 'promotion'},
-                    {'column': 19, 'key': 'grade'},
-                    {'column': 20, 'key': 'designation'},
-                    {'column': 21, 'key': 'effectivefrom'},
-                    {'column': 22, 'key': 'letterdate'},
+                    {'column': 10, 'key': 'salary'},
+                    {'column': 11, 'key': 'increment'},
+                    {'column': 14, 'key': 'currentgrade'},
+                    {'column': 15, 'key': 'promotion'},
+                    {'column': 16, 'key': 'grade'},
+                    {'column': 17, 'key': 'designation'},
+                    {'column': 18, 'key': 'effectivefrom'},
+                    {'column': 19, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',

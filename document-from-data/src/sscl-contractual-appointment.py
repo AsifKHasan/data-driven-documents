@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
 '''
-    generate templated confirmation letter from data
+    generate templated contractual employment from data
 '''
 
+import num2words
 from helper.document_template import *
 
-
-''' generate documents from data
+''' post process document data
 '''
 def post_process_data(processed_data):
     for item in processed_data['data']:
-        if item["raise"] == 'yes':
-            item["raise"] = ' with raise'
-        else:
-            item["raise"] = ''
+        item['totalinwords'] = num2words.num2words(item['remuneration'].replace(',', ''), to='currency', lang='en_IN').replace('euro', 'taka').replace('cents', 'paisa')
 
     return processed_data
 
@@ -22,7 +19,7 @@ if __name__ == '__main__':
     org = 'SSCL'
     unit = 'hrm'
     provider = 'google'
-    document = 'confirmation-letter'
+    document = 'contractual-appointment'
 
     # get the appropriate data-connector
     data_connector = authenticate_to_data_service(org, provider)

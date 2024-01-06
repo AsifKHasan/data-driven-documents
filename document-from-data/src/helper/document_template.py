@@ -159,6 +159,16 @@ DATA_SOURCES = {
                 'worksheet': 'confirmation',
                 'data-range': 'A3:N'
             },
+            'contract-renewal': {
+                'sheet': 'SSCL__letters-certificates',
+                'worksheet': 'contract-renewal',
+                'data-range': 'A3:Y'
+            },
+            'contractual-appointment': {
+                'sheet': 'SSCL__letters-certificates',
+                'worksheet': 'contractual-appointment',
+                'data-range': 'A3:R'
+            },
             'experience-certificate': {
                 'sheet': 'SSCL__letters-certificates',
                 'worksheet': 'experience-certificate',
@@ -236,12 +246,12 @@ DATA_SOURCES = {
             'issued-invoice': {
                 'sheet': 'SSCL__po-invoice',
                 'worksheet': 'issued-invoice',
-                'data-range': 'A3:Y'
+                'data-range': 'A3:Z'
             },
             'issued-po': {
                 'sheet': 'SSCL__po-invoice',
                 'worksheet': 'issued-po',
-                'data-range': 'A3:AH'
+                'data-range': 'A3:AK'
             },
         },
     },
@@ -736,6 +746,55 @@ DATA_PROCESSORS = {
                 'filter-column': 0,
                 'filter-value': 'yes',
             },
+            'contract-renewal': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'address'},
+                    {'column': 5, 'key': 'appointmentref'},
+                    {'column': 6, 'key': 'appointmentdate'},
+                    {'column': 7, 'key': 'effectivefrom'},
+                    {'column': 8, 'key': 'validto'},
+                    {'column': 9, 'key': 'duration'},
+                    {'column': 10, 'key': 'designation'},
+                    {'column': 11, 'key': 'wing'},
+                    {'column': 12, 'key': 'unit'},
+                    {'column': 13, 'key': 'project'},
+                    {'column': 14, 'key': 'supervisor'},
+                    {'column': 15, 'key': 'remuneration'},
+                    {'column': 16, 'key': 'currency'},
+                    {'column': 17, 'key': 'cycle'},
+                    {'column': 18, 'key': 'site'},
+                    {'column': 19, 'key': 'clause2'},
+                    {'column': 24, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
+            'contractual-appointment': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'address'},
+                    {'column': 5, 'key': 'effectivefrom'},
+                    {'column': 6, 'key': 'validto'},
+                    {'column': 7, 'key': 'designation'},
+                    {'column': 8, 'key': 'wing'},
+                    {'column': 9, 'key': 'unit'},
+                    {'column': 10, 'key': 'project'},
+                    {'column': 11, 'key': 'supervisor'},
+                    {'column': 12, 'key': 'remuneration'},
+                    {'column': 13, 'key': 'site'},
+                    {'column': 14, 'key': 'clause2'},
+                    {'column': 15, 'key': 'clause5'},
+                    {'column': 16, 'key': 'clause10'},
+                    {'column': 17, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
             'experience-certificate': {
                 'columns': [
                     {'column': 1, 'key': 'seq'},
@@ -1076,6 +1135,7 @@ DATA_PROCESSORS = {
                     {'column': 22, 'key': 'clienturl'},
                     {'column': 23, 'key': 'contactname'},
                     {'column': 24, 'key': 'contactphone'},
+                    {'column': 25, 'key': 'signatory'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -1122,6 +1182,9 @@ DATA_PROCESSORS = {
                     {'column': 31, 'key': 'vendorcontactname'},
                     {'column': 32, 'key': 'vendorcontactphone'},
                     {'column': 33, 'key': 'vendorcontactemail'},
+                    {'column': 34, 'key': 'contactname'},
+                    {'column': 35, 'key': 'contactphone'},
+                    {'column': 36, 'key': 'contactemail'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -1368,7 +1431,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__loan-application__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': False,
-                'merged-file-pattern': 'sscl__loan-application__2023.odt',
+                'merged-file-pattern': 'sscl__loan-application__2024.odt',
                 'pdf-output-for-merged-file': False,
             },
             'appointment-letter': {
@@ -1377,7 +1440,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__appointment-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': False,
-                'merged-file-pattern': 'sscl__appointment-letter__2023.odt',
+                'merged-file-pattern': 'sscl__appointment-letter__2024.odt',
                 'pdf-output-for-merged-file': False,
             },
             'confirmation-letter': {
@@ -1386,8 +1449,26 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__confirmation-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': False,
-                'merged-file-pattern': 'sscl__confirmation-letter__2023.odt',
+                'merged-file-pattern': 'sscl__confirmation-letter__2024.odt',
                 'pdf-output-for-merged-file': True,
+            },
+            'contract-renewal': {
+                'input-template': '../template/sscl/hrm/contract-renewal/SSCL__contract-renewal-template__2024.odt',
+                'output-dir': '../out/sscl/hrm/contract-renewal',
+                'output-file-pattern': 'sscl__contract-renewal__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': False,
+                'merged-file-pattern': 'sscl__contract-renewal__2024.odt',
+                'pdf-output-for-merged-file': False,
+            },
+            'contractual-appointment': {
+                'input-template': '../template/sscl/hrm/contractual-appointment/SSCL__contractual-appointment-template__2024.odt',
+                'output-dir': '../out/sscl/hrm/contractual-appointment',
+                'output-file-pattern': 'sscl__contractual-appointment__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': False,
+                'merged-file-pattern': 'sscl__contractual-appointment__2024.odt',
+                'pdf-output-for-merged-file': False,
             },
             'experience-certificate': {
                 'input-template': '../template/sscl/hrm/experience-certificate/SSCL__experience-certificate-template__2023.odt',
@@ -1395,7 +1476,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__experience-certificate__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'sscl__experience-certificate__2023.odt',
+                'merged-file-pattern': 'sscl__experience-certificate__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
             'internship-certificate': {
@@ -1404,7 +1485,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__internship-certificate__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': False,
-                'merged-file-pattern': 'sscl__internship-certificate__2023.odt',
+                'merged-file-pattern': 'sscl__internship-certificate__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
             'internship-letter': {
@@ -1413,7 +1494,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__internship-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'sscl__internship-letter__2023.odt',
+                'merged-file-pattern': 'sscl__internship-letter__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
             'offer-letter': {
@@ -1422,7 +1503,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__offer-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': False,
-                'merged-file-pattern': 'sscl__offer-letter__2023.odt',
+                'merged-file-pattern': 'sscl__offer-letter__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
             'release-letter': {
@@ -1431,7 +1512,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__release-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'sscl__release-letter__2023.odt',
+                'merged-file-pattern': 'sscl__release-letter__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
             'salary-certificate': {
@@ -1440,7 +1521,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__salary-certificate__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'sscl__salary-certificate__2022.odt',
+                'merged-file-pattern': 'sscl__salary-certificate__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
             'salary-enhancement-letter': {
@@ -1449,7 +1530,7 @@ DATA_SERIALIZERS = {
                 'output-file-pattern': 'sscl__salary-enhancement-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'sscl__salary-enhancement-letter__2023.odt',
+                'merged-file-pattern': 'sscl__salary-enhancement-letter__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
         },
@@ -1520,7 +1601,7 @@ DATA_SERIALIZERS = {
         },
         'scm': {
             'issued-invoice': {
-                'input-template': '../template/sscl/scm/issued-invoice/SSCL__issued-invoice-template__2022.odt',
+                'input-template': '../template/sscl/scm/issued-invoice/SSCL__issued-invoice-template__2024.odt',
                 'output-dir': '../out/sscl/scm/issued-invoice',
                 'output-file-pattern': 'sscl__issued-invoice__{invoiceref}.odt',
                 'pdf-output-for-files': True,
@@ -1529,7 +1610,7 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-merged-file': False,
             },
             'issued-po': {
-                'input-template': '../template/sscl/scm/issued-po/SSCL__issued-po-template__2022.odt',
+                'input-template': '../template/sscl/scm/issued-po/SSCL__issued-po-template__2024.odt',
                 'output-dir': '../out/sscl/scm/issued-po',
                 'output-file-pattern': 'sscl__issued-po__{poref}.odt',
                 'pdf-output-for-files': True,
@@ -1542,12 +1623,12 @@ DATA_SERIALIZERS = {
     'celloscope' : {
         'hrm': {
             'salary-enhancement-letter': {
-                'input-template': '../template/celloscope/salary-enhancement-letter/celloscope__salary-enhancement-letter-template__2022.odt',
+                'input-template': '../template/celloscope/salary-enhancement-letter/celloscope__salary-enhancement-letter-template__2024.odt',
                 'output-dir': '../out/celloscope/salary-enhancement-letter',
                 'output-file-pattern': 'celloscope__salary-enhancement-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'celloscope__salary-enhancement-letter__2023.odt',
+                'merged-file-pattern': 'celloscope__salary-enhancement-letter__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
         },

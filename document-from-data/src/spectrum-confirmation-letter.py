@@ -19,9 +19,9 @@ def post_process_data(processed_data):
 
 
 if __name__ == '__main__':
-    provider = 'google'
-    unit = 'hrm'
     org = 'spectrum'
+    unit = 'hrm'
+    provider = 'google'
     document = 'confirmation-letter'
 
     # get the appropriate data-connector

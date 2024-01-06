@@ -6,9 +6,9 @@
 from helper.document_template import *
 
 if __name__ == '__main__':
-    provider = 'google'
-    unit = 'hrm'
     org = 'spectrum'
+    unit = 'hrm'
+    provider = 'google'
     document = 'salary-revision-letter'
 
     # get the appropriate data-connector

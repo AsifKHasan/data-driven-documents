@@ -9,9 +9,9 @@ from helper.document_template import *
 ''' generate documents from data
 '''
 if __name__ == '__main__':
-    provider = 'google'
-    unit = 'hrm'
     org = 'spectrum'
+    unit = 'hrm'
+    provider = 'google'
     document = 'promotion-letter'
 
     # get the appropriate data-connector

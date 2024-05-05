@@ -45,11 +45,12 @@ class AdviceGenerator:
             if selection['selected-filter'] == 'Software':
                 salary = list(filter(lambda v: v['unit'] == 'Software Services' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
 
-            elif selection['selected-filter'] == 'R&D':
-                salary = list(filter(lambda v: v['unit'] == 'Research and Development' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
+            # elif selection['selected-filter'] == 'R&D':
+            #     salary = list(filter(lambda v: v['unit'] == 'Research and Development' and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
 
             else:
-                salary = list(filter(lambda v: v['unit'] not in ['Software Services', 'Research and Development'] and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
+                # salary = list(filter(lambda v: v['unit'] not in ['Software Services', 'Research and Development'] and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
+                salary = list(filter(lambda v: v['unit'] not in ['Software Services'] and v['account'] != '' and v['paythrough'] == 'Bank' and v['paystatus'] == 'In Process', salary))
 
         else:
             return None

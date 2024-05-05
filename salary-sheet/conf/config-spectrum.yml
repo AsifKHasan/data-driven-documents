@@ -10,19 +10,20 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Jan23.
-  - Feb23.
-  - Mar23.
-  - Apr23.
-  - May23.
-  - EidBouns-Jun23.
-  - Jun23.
-  - Jul23.
-  - Aug23.
-  - Sep23.
-  - Oct23.
-  - Nov23.
-  - Dec23.
+  - Jan24.
+  - Feb24.
+  - Mar24.
+  - EidBouns-Apr24.
+  - Apr24.
+  - May24.
+  - EidBouns-Jun24.
+  - Jun24.
+  - Jul24.
+  - Aug24.
+  - Sep24.
+  - Oct24.
+  - Nov24.
+  - Dec24.
   wings:
   - Acquisition
   - Delivery
@@ -30,7 +31,7 @@ master-data:
 selection:
   selected-account: '2141313009163'
   selected-filter: None
-  selected-mode: Cash
-  selected-month: Oct23.
-  selected-reference: 23/1150
-  selected-wing: Acquisition
+  selected-mode: Cheque
+  selected-month: Mar24.
+  selected-reference: 24/1300
+  selected-wing: Delivery

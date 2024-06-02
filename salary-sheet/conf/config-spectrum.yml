@@ -16,7 +16,7 @@ master-data:
   - EidBouns-Apr24.
   - Apr24.
   - May24.
-  - EidBouns-Jun24.
+  - EidBonus-Jun24.
   - Jun24.
   - Jul24.
   - Aug24.
@@ -31,7 +31,7 @@ master-data:
 selection:
   selected-account: '2141313009163'
   selected-filter: None
-  selected-mode: Cheque
-  selected-month: Mar24.
+  selected-mode: Bank
+  selected-month: EidBonus-Jun24.
   selected-reference: 24/1300
   selected-wing: Delivery

@@ -14,20 +14,20 @@ from helper.openoffice.odt.odt_helper import *
 from helper.openoffice.odf_helper import *
 from helper.logger import *
 
-DATA_CONNECTORS = {
+DATA_CONNECTORS = { 
     'spectrum' : {
         'google': {
-            'credential-json': '../conf/credential.json'
+            'credential-json': '../conf/credential-spectrum-895-221613.json'
         },
     },
     'SSCL' : {
         'google': {
-            'credential-json': '../conf/credential.json'
+            'credential-json': '../conf/credential-spectrum-895-221613.json'
         },
     },
     'celloscope' : {
         'google': {
-            'credential-json': '../conf/credential.json'
+            'credential-json': '../conf/credential-celloscope-2024-160107.json'
         },
     },
 }

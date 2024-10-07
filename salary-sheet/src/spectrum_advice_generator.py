@@ -12,7 +12,7 @@ import num2words
 from helper.latex.latex2pdf import Latex2Pdf
 from helper.google.google_helper import GoogleHelper
 
-GSHEET_NAME = 'FAU__SalarySheet__2023-2024'
+GSHEET_NAME = 'FAU__SalarySheet__2024-2025'
 COL_BANK_ACCOUNT_NAME = 2
 COL_WING = 6
 COL_UNIT = 7

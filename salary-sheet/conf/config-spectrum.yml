@@ -10,20 +10,18 @@ master-data:
   - Cheque
   - Bank
   months:
-  - Jan24.
-  - Feb24.
-  - Mar24.
-  - EidBouns-Apr24.
-  - Apr24.
-  - May24.
-  - EidBonus-Jun24.
-  - Jun24.
   - Jul24.
   - Aug24.
   - Sep24.
   - Oct24.
   - Nov24.
   - Dec24.
+  - Jan25.
+  - Feb25.
+  - Mar25.
+  - Apr25.
+  - May25.
+  - Jun25.
   wings:
   - Acquisition
   - Delivery

@@ -157,7 +157,7 @@ class SalaryAdviceApp:
     def init_generator(self):
 
         self.advice_generator = AdviceGenerator()
-        result = self.advice_generator.init(os.path.abspath('../conf/credential.json'), os.path.abspath('../template/spectrum'), os.path.abspath('../out/spectrum'))
+        result = self.advice_generator.init(os.path.abspath('../conf/credential-spectrum-895-221613.json'), os.path.abspath('../template/spectrum'), os.path.abspath('../out/spectrum'))
         if result and result['success'] == False:
             messagebox.showerror('Error', result['msg'])
             self.generate_button.configure(state=tk.DISABLED)

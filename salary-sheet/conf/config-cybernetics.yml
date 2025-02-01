@@ -1,0 +1,26 @@
+master-data:
+  bank-accounts:
+  - 19885832798563
+  modes:
+  - Cash
+  - Cheque
+  - Bank
+  months:
+  - Dec24.
+  - Jan25.
+  - Feb25.
+  - Mar25.
+  - Apr25.
+  - May25.
+  - Jun25.
+  - Jul25.
+  - Aug25.
+  - Sep25.
+  - Oct25.
+  - Nov25.
+  - Dec25.
+selection:
+  selected-account: '19885832798563'
+  selected-mode: Cash
+  selected-month: Dec24.
+  selected-reference: 25/01

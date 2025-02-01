@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,portrait,left=1.00in, right=0.50in, top=1.50in, bottom=1.50in]{geometry}
+\usepackage{fontspec}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[table]{xcolor}
+\usepackage{multirow,rotating}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{titlesec}
+\usepackage{lastpage}
+
+\fancyfoot[C]{Page \thepage\ of \pageref{LastPage}}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength\parindent{0pt}
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}                       % "top" strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}                 % "bottom" strut
+\newcommand{\TBstrut}{\Tstrut\Bstrut}                       % top&bottom struts
+\sectionfont{\fontsize{12}{15}\selectfont}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 0pt}
+
+\begin{document}
+
+{\Large
+Reference: Cybernetics/Salary/UCB/{{% data.refno %}}\\
+Date : {{% data.date %}}\\\
+
+
+The Manager\\
+Kawranbazar Branch\\
+United Commercial Bank PLC\\
+
+\textit{Subject: Fund transfer from A/C {{% data.selectedaccount %}} to individual salary A/C}
+\\
+
+Dear Sir\\
+
+We would like to request you to debit Cybernetics Hi-Tech Solutions (Pvt) Ltd. A/C {{% data.selectedaccount %}} for an amount of Tk. {{% data.totalamount %}} ({{% data.totalamountinwords %}}) only and credit the same amount to the respective employee's account as per the list attached herewith.
+\\
+
+Your early action in this regards will be highly appreciated.
+\\
+
+Thanking you
+\\\\\\\\
+
+$\overline{\makebox[4.0cm]{Chairman/MD}}$
+\hspace{8.0cm}
+$\overline{\makebox[4.0cm]{Director}}$
+\\
+}
+
+\pagebreak
+
+{\Large
+\centering\textbf{Cybernetics Hi-Tech Solutions (Pvt) Ltd.}\\
+\centerline{Salary Advice for the month of {{% data.month %}} }
+}
+
+\begin{longtable}{|p{0.40in}|p{3.00in}|p{1.20in}|p{1.40in}|}
+  \hline
+    \centering\textbf{\#} & \raggedright\textbf{Name of Employee} & \raggedright\textbf{Saving A/C No} & \raggedleft\textbf{Net Pay in BDT}
+    \TBstrut
+    \tabularnewline
+    \hline
+    \endhead
+
+    \multicolumn{2}{l}{$\overline{\makebox[2.0in]{MD/DMD}}$}  &  \multicolumn{2}{r}{$\overline{\makebox[2.0in]{Director}}$}
+    \rule{0pt}{60pt}
+    \TBstrut
+    \tabularnewline
+    \endfoot
+    
+    \bottomrule
+    
+    \multicolumn{2}{l}{\textbf{Total}}  &  \multicolumn{2}{r}{\textbf{ {{% data.totalamount %}} }}
+    \rule{0pt}{10pt}
+    \tabularnewline
+    \hline
+    \multicolumn{4}{r}{\textbf{ {{% data.totalamountinwords %}} }}
+    \tabularnewline
+    \hline
+    \multicolumn{2}{l}{$\overline{\makebox[2.0in]{Chairman/DMD}}$}  &  \multicolumn{2}{r}{$\overline{\makebox[2.0in]{Director}}$}
+    \rule{0pt}{60pt}
+    \TBstrut
+    \tabularnewline
+    \endlastfoot
+    
+    {% for row in data.salary %}
+      \TBstrut
+      \centering  {{% loop.index %}}
+      & \raggedright {{% row.name %}}
+      & \raggedright {{% row.account %}}
+      & \raggedleft {{% row.payable %}}
+      \tabularnewline \hline
+    {% endfor %}
+\end{longtable}
+
+\end{document}

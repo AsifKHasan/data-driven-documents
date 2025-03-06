@@ -111,9 +111,9 @@ DATA_SOURCES = {
                 'data-range': 'A3:R'
             },
             'salary-enhancement-letter': {
-                'sheet': 'spectrum__salary-revision__2023',
-                'worksheet': 'spectrum-2023',
-                'data-range': 'A5:W'
+                'sheet': 'spectrum__salary-revision__2024',
+                'worksheet': 'spectrum-2024',
+                'data-range': 'A5:T'
             },
             'salary-revision-letter': {
                 'sheet': 'HR__letters-certificates',
@@ -1368,12 +1368,12 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-merged-file': True,
             },
             'salary-enhancement-letter': {
-                'input-template': '../template/spectrum/hrm/salary-enhancement-letter/HR__salary-enhancement-letter-template__2022.odt',
+                'input-template': '../template/spectrum/hrm/salary-enhancement-letter/HR__salary-enhancement-letter-template__2024.odt',
                 'output-dir': '../out/spectrum/hrm/salary-enhancement-letter',
                 'output-file-pattern': 'spectrum__salary-enhancement-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'spectrum__salary-enhancement-letter__2023.odt',
+                'merged-file-pattern': 'spectrum__salary-enhancement-letter__2024.odt',
                 'pdf-output-for-merged-file': True,
             },
             'salary-revision-letter': {

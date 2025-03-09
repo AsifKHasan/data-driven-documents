@@ -14,14 +14,11 @@ from helper.latex.latex2pdf import Latex2Pdf
 from helper.google.google_helper import GoogleHelper
 
 GSHEET_NAME = 'sscl__salary-sheet__2024-2025'
-COL_BANK_ACCOUNT_NAME = 2
-COL_BANK_ACCOUNT_NUMBER = 9
-# COL_NET_PAYABLE = 59  # BH
-# COL_PAY_THROUGH = 61  # BJ
-# COL_PAY_STATUS = 62   # BK
-COL_NET_PAYABLE = 54    # BC
-COL_PAY_THROUGH = 56    # BE
-COL_PAY_STATUS = 57     # BF
+COL_BANK_ACCOUNT_NAME = 2       # C
+COL_BANK_ACCOUNT_NUMBER = 11    # L
+COL_NET_PAYABLE = 57    # BF
+COL_PAY_THROUGH = 59    # BH
+COL_PAY_STATUS = 60     # BI
 
 ROW_DATA_START = 5
 

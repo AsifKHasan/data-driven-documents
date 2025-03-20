@@ -59,7 +59,7 @@ class AdviceGenerator:
 
         return data
 
-    def gnerate_pdf(self, selection):
+    def generate_pdf(self, selection):
         # get the paths
         template_file, json_path, pdf_path = self.get_paths(selection)
 

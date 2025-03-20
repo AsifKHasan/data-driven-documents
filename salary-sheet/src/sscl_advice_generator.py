@@ -55,7 +55,7 @@ class AdviceGenerator:
 
         return data
 
-    def gnerate_pdf(self, selection):
+    def generate_pdf(self, selection):
         if not self.context['gsheet']:
             return {'success': False, 'msg': 'Salary Sheet not accessible'}
 

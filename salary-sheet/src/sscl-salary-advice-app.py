@@ -129,7 +129,7 @@ class SalaryAdviceApp:
         self.save_selection(None)
 
         # call the genarator
-        result = self.advice_generator.gnerate_pdf(self.config['selection'])
+        result = self.advice_generator.generate_pdf(self.config['selection'])
         if result and result['success']:
             subprocess.Popen(result['pdf-path'], shell=True)
         else:

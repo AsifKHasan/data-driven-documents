@@ -14,6 +14,6 @@ master-data:
   - Jun25.
 selection:
   selected-account: 4002-778881-000
-  selected-mode: Bank
+  selected-mode: Cheque
   selected-month: EidBonus-Feb25
   selected-reference: 25/63

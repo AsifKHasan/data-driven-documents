@@ -157,7 +157,7 @@ DATA_SOURCES = {
             'confirmation-letter': {
                 'sheet': 'SSCL__letters-certificates',
                 'worksheet': 'confirmation',
-                'data-range': 'A3:N'
+                'data-range': 'A3:M'
             },
             'contract-renewal': {
                 'sheet': 'SSCL__letters-certificates',
@@ -187,7 +187,7 @@ DATA_SOURCES = {
             'offer-letter': {
                 'sheet': 'SSCL__letters-certificates',
                 'worksheet': 'offer',
-                'data-range': 'A3:M'
+                'data-range': 'A3:N'
             },
             'release-letter': {
                 'sheet': 'SSCL__letters-certificates',
@@ -202,7 +202,7 @@ DATA_SOURCES = {
             'salary-enhancement-letter': {
                 'sheet': 'sscl__salary-revision__2022',
                 'worksheet': 'sscl-2022',
-                'data-range': 'A5:W'
+                'data-range': 'A5:X'
             },
         },
         'f&a': {
@@ -737,11 +737,12 @@ DATA_PROCESSORS = {
                     {'column': 6, 'key': 'grade'},
                     {'column': 7, 'key': 'designation'},
                     {'column': 8, 'key': 'effectivefrom'},
-                    {'column': 9, 'key': 'raise'},
-                    {'column': 10, 'key': 'remuneration'},
-                    {'column': 11, 'key': 'increment'},
-                    {'column': 12, 'key': 'supervisor'},
-                    {'column': 13, 'key': 'letterdate'},
+                    {'column': 9, 'key': 'nextevaldate'},
+                    {'column': 10, 'key': 'raise'},
+                    {'column': 11, 'key': 'remuneration'},
+                    {'column': 12, 'key': 'increment'},
+                    {'column': 13, 'key': 'supervisor'},
+                    {'column': 14, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -852,13 +853,14 @@ DATA_PROCESSORS = {
                     {'column': 3, 'key': 'name'},
                     {'column': 4, 'key': 'address'},
                     {'column': 5, 'key': 'effectivefrom'},
-                    {'column': 6, 'key': 'designation'},
-                    {'column': 7, 'key': 'grade'},
-                    {'column': 8, 'key': 'wing'},
-                    {'column': 9, 'key': 'unit'},
-                    {'column': 10, 'key': 'remuneration'},
-                    {'column': 11, 'key': 'signatory'},
-                    {'column': 12, 'key': 'letterdate'},
+                    {'column': 6, 'key': 'nextevaldate'},
+                    {'column': 7, 'key': 'designation'},
+                    {'column': 8, 'key': 'grade'},
+                    {'column': 9, 'key': 'wing'},
+                    {'column': 10, 'key': 'unit'},
+                    {'column': 11, 'key': 'remuneration'},
+                    {'column': 12, 'key': 'signatory'},
+                    {'column': 13, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -916,7 +918,8 @@ DATA_PROCESSORS = {
                     {'column': 19, 'key': 'grade'},
                     {'column': 20, 'key': 'designation'},
                     {'column': 21, 'key': 'effectivefrom'},
-                    {'column': 22, 'key': 'letterdate'},
+                    {'column': 22, 'key': 'nextevaldate'},
+                    {'column': 23, 'key': 'letterdate'},
                 ],
                 'filter-column': 0,
                 'filter-value': 'yes',
@@ -1444,12 +1447,12 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-merged-file': False,
             },
             'confirmation-letter': {
-                'input-template': '../template/sscl/hrm/confirmation-letter/SSCL__confirmation-letter-template__2022.odt',
+                'input-template': '../template/sscl/hrm/confirmation-letter/SSCL__confirmation-letter-template__2025.odt',
                 'output-dir': '../out/sscl/hrm/confirmation-letter',
                 'output-file-pattern': 'sscl__confirmation-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': False,
-                'merged-file-pattern': 'sscl__confirmation-letter__2024.odt',
+                'merged-file-pattern': 'sscl__confirmation-letter__2025.odt',
                 'pdf-output-for-merged-file': True,
             },
             'contract-renewal': {
@@ -1498,12 +1501,12 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-merged-file': True,
             },
             'offer-letter': {
-                'input-template': '../template/sscl/hrm/offer-letter/SSCL__offer-letter-template__2022.odt',
+                'input-template': '../template/sscl/hrm/offer-letter/SSCL__offer-letter-template__2025.odt',
                 'output-dir': '../out/sscl/hrm/offer-letter',
                 'output-file-pattern': 'sscl__offer-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': False,
-                'merged-file-pattern': 'sscl__offer-letter__2024.odt',
+                'merged-file-pattern': 'sscl__offer-letter__2025.odt',
                 'pdf-output-for-merged-file': True,
             },
             'release-letter': {
@@ -1525,12 +1528,12 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-merged-file': True,
             },
             'salary-enhancement-letter': {
-                'input-template': '../template/sscl/hrm/salary-enhancement-letter/SSCL__salary-enhancement-letter-template__2022.odt',
+                'input-template': '../template/sscl/hrm/salary-enhancement-letter/SSCL__salary-enhancement-letter-template__2025.odt',
                 'output-dir': '../out/sscl/hrm/salary-enhancement-letter',
                 'output-file-pattern': 'sscl__salary-enhancement-letter__{seq}__{name}.odt',
                 'pdf-output-for-files': True,
                 'merge-files': True,
-                'merged-file-pattern': 'sscl__salary-enhancement-letter__2024.odt',
+                'merged-file-pattern': 'sscl__salary-enhancement-letter__2025.odt',
                 'pdf-output-for-merged-file': True,
             },
         },

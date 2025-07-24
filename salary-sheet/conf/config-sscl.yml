@@ -17,6 +17,6 @@ master-data:
   - Dec25.
 selection:
   selected-account: 4002-778881-000
-  selected-mode: Cheque
-  selected-month: May25.
-  selected-reference: 25/69
+  selected-mode: Bank
+  selected-month: Jun25.
+  selected-reference: 25/70

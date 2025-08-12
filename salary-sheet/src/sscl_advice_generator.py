@@ -13,7 +13,7 @@ import num2words
 from helper.latex.latex2pdf import Latex2Pdf
 from helper.google.google_helper import GoogleHelper
 
-GSHEET_NAME = 'sscl__salary-sheet__2024-2025'
+GSHEET_NAME = 'sscl__salary-sheet__2025-2026'
 COL_BANK_ACCOUNT_NAME = 2       # C
 COL_BANK_ACCOUNT_NUMBER = 11    # L
 COL_NET_PAYABLE = 57    # BF

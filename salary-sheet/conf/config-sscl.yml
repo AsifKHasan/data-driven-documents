@@ -23,6 +23,6 @@ master-data:
   - Dec26.
 selection:
   selected-account: '2219135014087'
-  selected-mode: Cheque
-  selected-month: Dec25.
-  selected-reference: 25/78
+  selected-mode: Bank
+  selected-month: Apr26.
+  selected-reference: 26/92

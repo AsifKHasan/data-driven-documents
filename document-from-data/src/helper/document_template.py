@@ -204,6 +204,16 @@ DATA_SOURCES = {
                 'worksheet': 'sscl-2022',
                 'data-range': 'A5:X'
             },
+            'separation-letter': {
+                'sheet': 'SSCL__letters-certificates',
+                'worksheet': 'separation',
+                'data-range': 'A3:I'
+            },
+            'showcause-letter': {
+                'sheet': 'SSCL__letters-certificates',
+                'worksheet': 'showcause',
+                'data-range': 'A3:J'
+            },
         },
         'f&a': {
             'money-receipt': {
@@ -924,6 +934,35 @@ DATA_PROCESSORS = {
                 'filter-column': 0,
                 'filter-value': 'yes',
             },
+            'separation-letter': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'address'},
+                    {'column': 5, 'key': 'effectivefrom'},
+                    {'column': 6, 'key': 'clause'},
+                    {'column': 7, 'key': 'reasontext'},
+                    {'column': 8, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
+            'showcause-letter': {
+                'columns': [
+                    {'column': 1, 'key': 'seq'},
+                    {'column': 2, 'key': 'salutation'},
+                    {'column': 3, 'key': 'name'},
+                    {'column': 4, 'key': 'subject'},
+                    {'column': 5, 'key': 'incidence'},
+                    {'column': 6, 'key': 'submitto'},
+                    {'column': 7, 'key': 'submissiondate'},
+                    {'column': 8, 'key': 'signatory'},
+                    {'column': 9, 'key': 'letterdate'},
+                ],
+                'filter-column': 0,
+                'filter-value': 'yes',
+            },
         },
         'f&a': {
             'money-receipt': {
@@ -1534,6 +1573,24 @@ DATA_SERIALIZERS = {
                 'pdf-output-for-files': True,
                 'merge-files': True,
                 'merged-file-pattern': 'sscl__salary-enhancement-letter__2025.odt',
+                'pdf-output-for-merged-file': True,
+            },
+            'separation-letter': {
+                'input-template': '../template/sscl/hrm/separation-letter/SSCL__separation-letter-template__2026.odt',
+                'output-dir': '../out/sscl/hrm/separation-letter',
+                'output-file-pattern': 'sscl__separation-letter__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': True,
+                'merged-file-pattern': 'sscl__separation-letter__2026.odt',
+                'pdf-output-for-merged-file': True,
+            },
+            'showcause-letter': {
+                'input-template': '../template/sscl/hrm/showcause-letter/SSCL__showcause-letter-template__2026.odt',
+                'output-dir': '../out/sscl/hrm/showcause-letter',
+                'output-file-pattern': 'sscl__showcause-letter__{seq}__{name}.odt',
+                'pdf-output-for-files': True,
+                'merge-files': True,
+                'merged-file-pattern': 'sscl__showcause-letter__2026.odt',
                 'pdf-output-for-merged-file': True,
             },
         },
